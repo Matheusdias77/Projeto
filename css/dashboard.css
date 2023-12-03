@@ -1,0 +1,85 @@
+body, h1, p {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 0.2em; 
+    margin-top: 0.2em;
+    font-size: 50px;
+}
+
+#informacoes {
+    margin: 20px;
+}
+
+.totalAnimal {
+    position: relative;
+    background-color: #fff;
+    padding: 40px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.totalAnimal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -10px; 
+    height: 100%;
+    width: 10px;
+    background-color: #3498db;
+    border-radius: 8px 0 0 8px;
+}
+
+.totalDoentes {
+    position: relative;
+    background-color: #fff;
+    padding: 60px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.totalDoentes::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -10px; 
+    height: 100%;
+    width: 10px;
+    background-color: #3498db;
+    border-radius: 8px 0 0 8px;
+}
+
+.totalGestante  {
+    position: relative;
+    background-color: #fff;
+    padding: 60px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.totalGestante ::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -10px; 
+    height: 100%;
+    width: 10px;
+    background-color: #3498db;
+    border-radius: 8px 0 0 8px;
+}
+
+h2 {
+    font-size: 30px;
+}
