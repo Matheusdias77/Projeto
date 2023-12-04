@@ -6,7 +6,7 @@ body {
   margin: 0;
 }
 
-#form-centro {
+#form-login {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@ body {
   height: 100vh;
 }
 
-#form {
+#formulario {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -22,14 +22,14 @@ body {
   text-align: center;
 }
 
-#form img {
+#formulario img {
   width: 220px;
   height: 200px;
   padding-top: 20px;
   margin-left: 25px;
 }
 
-#form h1 {
+#formulario h1 {
   font-size: 35px;
   margin-top: 10px;
   color: #333;
@@ -37,7 +37,7 @@ body {
   padding-top: 20px;
 }
 
-#form h2  {
+#formulario h2  {
   font-size: 24px;
   margin-top: 10px;
   color: #333;
@@ -52,7 +52,7 @@ body {
 }
 
 
-#form button {
+#formulario button {
   font-size: 20px;
   padding: 12px 150px;
   background-color: #4caf50;
@@ -62,7 +62,7 @@ body {
   cursor: pointer;
 }
 
-#form button:hover {
+#formulario button:hover {
   background-color: #45a049;
 }
 
