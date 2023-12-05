@@ -3,9 +3,13 @@ body, h1, p {
     padding: 0;
 }
 
+body {
+    background-color: #6b6c6d31;
+}
+
 header {
-    background-color: #333;
-    color: #fff;
+    background-color: #ffffff;
+    color: #0e0d0d;
     padding: 1em;
     text-align: center;
 }
@@ -17,16 +21,33 @@ header h1 {
 }
 
 #informacoes {
-    margin: 20px;
+    margin: 2dvb;
+}
+
+.nomeCadastrados {
+    color: #0CB913;
+}
+
+.nomeDoentes {
+    color: #B90C0C;
+}
+
+.nomeGestante {
+    color: #F363FF;
 }
 
 .totalAnimal {
+    left: 4em;
     position: relative;
     background-color: #fff;
-    padding: 40px;
-    margin-bottom: 40px;
+    padding: 40px; 
+    margin-bottom: 40px; 
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 105em; 
 }
 
 .totalAnimal::before {
@@ -35,18 +56,32 @@ header h1 {
     top: 0;
     left: -10px; 
     height: 100%;
-    width: 10px;
-    background-color: #3498db;
+    width: 20px;
+    background-color: #0CB913;
     border-radius: 8px 0 0 8px;
 }
 
+#total-animais {
+    align-self: flex-end;
+    font-size: 4em;
+    font-weight: bold; 
+    margin-right: 4em;
+    margin-top: -1em;
+    color: #0CB913;
+}
+
 .totalDoentes {
+    left: 4em;
     position: relative;
     background-color: #fff;
-    padding: 60px;
-    margin-bottom: 40px;
+    padding: 40px; 
+    margin-bottom: 40px; 
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 105em; 
 }
 
 .totalDoentes::before {
@@ -55,18 +90,33 @@ header h1 {
     top: 0;
     left: -10px; 
     height: 100%;
-    width: 10px;
-    background-color: #3498db;
+    width: 20px;
+    background-color: #B90C0C;
     border-radius: 8px 0 0 8px;
 }
 
+#total-doentes {
+    align-self: flex-end;
+    font-size: 4em;
+    font-weight: bold; 
+    margin-right: 4em;
+    margin-top: -1em;
+    color: #B90C0C;
+}
+
+
 .totalGestante  {
+    left: 4em;
     position: relative;
     background-color: #fff;
-    padding: 60px;
-    margin-bottom: 40px;
+    padding: 40px; 
+    margin-bottom: 40px; 
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 105em; 
 }
 
 .totalGestante ::before {
@@ -75,10 +125,20 @@ header h1 {
     top: 0;
     left: -10px; 
     height: 100%;
-    width: 10px;
-    background-color: #3498db;
+    width: 20px;
+    background-color: #F363FF;
     border-radius: 8px 0 0 8px;
 }
+
+#total-gestantes {
+    align-self: flex-end;
+    font-size: 4em;
+    font-weight: bold; 
+    margin-right: 4em;
+    margin-top: -1em;
+    color: #F363FF;
+}
+
 
 h2 {
     font-size: 30px;
