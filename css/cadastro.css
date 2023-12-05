@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
+
 .mensagem-sucesso {
     color: green;
     margin-top: 10px;
@@ -5,4 +7,96 @@
 
 .erro{
     border: 1px solid red; 
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+}
+
+#form-cadastro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#cadastro {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+#cadastro img {
+  width: 220px;
+  height: 200px;
+  padding-top: 20px;
+  margin-left: 25px;
+}
+
+#cadastro h1 {
+  font-size: 35px;
+  margin-top: 10px;
+  color: #333;
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 20px;
+}
+
+#cadastro h2  {
+  font-size: 24px;
+  margin-top: 10px;
+  color: #333;
+  padding-top: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+#Cadastrar {
+  font-size: 20px;
+  padding: 12px 127px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#Cadastrar:hover {
+  background-color: #45a049;
+}
+
+a {
+  text-align: center;
+  text-decoration: none;
+  color: #45a049;
+}
+
+#ou {
+  display: flex;
+  align-items: center;
+  color: #888;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+#ou::before,
+#ou::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #888;
+  margin: 0 10px; 
 }

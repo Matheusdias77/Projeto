@@ -76,6 +76,30 @@ input {
   box-sizing: border-box;
 }
 
+  a {
+    padding: 10px;
+    color: #45a049;
+    font-size: 17px;
+    border: none;
+    text-decoration: none;
+  }
+
+  #ou {
+    display: flex;
+    align-items: center;
+    color: #888;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  #ou::before,
+  #ou::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #888;
+    margin: 0 10px; 
+  }
+
 @media screen and (max-width: 600px){
   #form img {
     width: 200px;

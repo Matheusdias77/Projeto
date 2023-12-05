@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +7,23 @@
     <title>Cadastro</title>
 </head>
 <body>
-    <form id="cadastro" onclick="envioForm()">
-        <input type="text" id="nome" placeholder="Digite seu nome">
-        <br>
-        <input type="text" id="E-mail" placeholder="Digite seu E-mail">
-        <br>
-        <input type="password" id="Senha" placeholder="Digite sua Senha">
-        <br>
-        <input type="submit" id="Cadastrar" value="Cadastrar">
-    </form>
-
+    <div id="form-cadastro">
+        <form id="cadastro" onclick="envioForm()">
+            <img src="..\Assets\LogoLogin.png">
+            <h1>Bem Caprino</h1>
+            <h2>Criar uma nova conta</h2>
+            <input type="text" id="nome" placeholder="Digite seu nome">
+            <br>
+            <input type="email" id="E-mail" placeholder="Digite seu email">
+            <br>
+            <input type="password" id="Senha" placeholder="Digite sua senha">
+            <br>
+            <button type="submit" id="Cadastrar" value="Cadastrar">Cadastre-se</button>
+            <br>
+            <p id="ou">ou</p>
+            <a href="login.html">Já tem uma conta ?</a>
+        </form>
+    </div>
     <div id="mensagemSucesso" class="mensagem-sucesso" style="display: none;">
     </div>
 
