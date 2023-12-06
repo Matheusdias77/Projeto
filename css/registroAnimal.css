@@ -1,0 +1,110 @@
+body, h1, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #6b6c6d31;
+}
+
+header {
+    background-color: #ffffff;
+    color: #0e0d0d;
+    padding: 15px;
+    text-align: center;
+}
+
+header h1 {
+    margin-top: 10px;
+    margin-right: 29em; 
+    font-size: 50px;
+    display: inline-block;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#menu {
+    list-style-type: none;
+    padding: 0;
+    margin: -36px 0px 0px 10px;
+}
+#menu li {
+    display: inline;
+    margin-right: 30px; 
+    margin-left: 30px; 
+    font-size: 22px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+#menu li a{
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.rAnimal:hover {
+    color: #0CB913;
+}
+
+.rDoentes:hover {
+    color: #B90C0C;
+}
+
+.rGestantes:hover {
+    color: #F363FF;
+}
+
+div {
+    justify-content: center;
+    display: flex;
+    align-items: center; /* Adicionado para centralizar verticalmente */
+    position: relative;
+    background-color: #fff;
+    padding: 40px; 
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 41em;
+    height: 46em;
+    margin-top: 20px;
+    margin-left: 598px;
+}
+
+#container {
+    position: relative;
+    width: 200px;
+    height: 200px; /* Altura do container */
+    border: 2px solid #333;
+    margin-top: -550px;
+}
+
+#imageInput {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+#deleteButton {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff3333;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    display: none;
+}
+
+#previewImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#container:hover #deleteButton {
+    display: block;
+}
