@@ -1,40 +1,54 @@
+
 let form = document.getElementById('cadastro');
 let dados;
 
-function envioForm(){
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
 
-        // Obtém os valores do formulário
-        let nome = document.getElementById('nome').value;
-        let email = document.getElementById('E-mail').value;
-        let senha = document.getElementById('Senha').value;
+form.addEventListener('submit', function(event) {
+    event.preventDefault()
 
-        if (validarEmailExistente(email)) {
-            document.getElementById('E-mail').value = '';
-            document.getElementById('E-mail').classList.add('erro');
-            document.getElementById('E-mail').setAttribute('placeholder', 'E-mail já cadastrado');
-            return;
+    const endEmail = document.getElementById('E-mail');
+    const endNome = document.getElementById('nome');
+    const endSenha = document.getElementById('Senha');
+    
+    let nome = document.getElementById('nome').value;
+    let email = document.getElementById('E-mail').value;
+    let senha = document.getElementById('Senha').value;
+
+    if(!nome || !email || !senha){
+        if(!senha){
+            endSenha.classList.add('erro');
         }
+        if(!email){
+            endEmail.classList.add('erro');
+        }
+        if(!nome){
+            endNome.classList.add('erro');
+        }
+        return
+    }
 
-        document.getElementById('E-mail').setAttribute('placeholder', 'Digite seu E-mail');
+    if (validarEmail(email)) {
+        endEmail.value = '';
+        endEmail.classList.add('erro');
+        endEmail.setAttribute('placeholder', 'E-mail já cadastrado');
+        return;
+    }
 
-        salvarDados(nome, email, senha);
+    document.getElementById('E-mail').setAttribute('placeholder', 'Digite seu E-mail');
 
-        
-        mensagemSucesso.style.color = 'green';
-        mensagemSucesso.textContent = 'Cadastro bem-sucedido!';
-        mensagemSucesso.style.display = 'block';
+    salvarDados(nome, email, senha);
 
-        setTimeout(function() {
-            document.getElementById('nome').value = '';
-            document.getElementById('E-mail').value = '';
-            document.getElementById('Senha').value = '';
-            mensagemSucesso.style.display = 'none';
-        }, 3000);
+    mensagemSucesso.textContent = 'Cadastro bem-sucedido!';
+    mensagemSucesso.style.display = 'block';
 
-    });
-}
+    setTimeout(function() {
+        endNome.value = '';
+        endEmail.value = '';
+        endSenha.value = '';
+        mensagemSucesso.style.display = 'none';
+    }, 3000);
+});
+
 
 function carregarDados() {
     const dadosExistenteString = localStorage.getItem('cadastrados');
@@ -53,10 +67,9 @@ function carregarDados() {
     return dadosExistente;
 }
 
-function validarEmailExistente(email) {
+function validarEmail(email) {
     dados = carregarDados(); 
 
-    // Verifica se o e-mail já existe na lista de cadastrados
     return dados.some(dado => dado.email === email);
 }
 
@@ -68,6 +81,4 @@ function salvarDados(nome, email, senha) {
     localStorage.setItem('cadastrados', JSON.stringify(dados));
 }
 
-dados = carregarDados();
-
-export default dados;
+export {carregarDados};

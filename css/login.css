@@ -6,7 +6,7 @@ body {
   margin: 0;
 }
 
-#form-login {
+#cadastro {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@ body {
   height: 100vh;
 }
 
-#formulario {
+#cadastro {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -22,14 +22,14 @@ body {
   text-align: center;
 }
 
-#formulario img {
+#cadastro img {
   width: 220px;
   height: 200px;
   padding-top: 20px;
   margin-left: 25px;
 }
 
-#formulario h1 {
+#cadastro h1 {
   font-size: 35px;
   margin-top: 10px;
   color: #333;
@@ -37,7 +37,7 @@ body {
   padding-top: 20px;
 }
 
-#formulario h2  {
+#cadastro h2  {
   font-size: 24px;
   margin-top: 10px;
   color: #333;
@@ -52,7 +52,7 @@ body {
 }
 
 
-#formulario button {
+#cadastro button {
   font-size: 20px;
   padding: 12px 150px;
   background-color: #4caf50;
@@ -62,12 +62,12 @@ body {
   cursor: pointer;
 }
 
-#formulario button:hover {
+#cadastro button:hover {
   background-color: #45a049;
 }
 
 input {
-  width: 100%;
+  width: 20%;
   padding: 10px;
   margin: 10px 0;
   border: none;
@@ -105,5 +105,8 @@ input {
     width: 200px;
     height: 120px;
     padding-top: 15px;
+  }
+  input {
+    width: 90%;
   }
 }
