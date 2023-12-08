@@ -11,35 +11,41 @@
         <h1 class="dash" onclick="mudarTela('dashboard.html')">Bem Caprino</h1>
         <nav>
             <ul id="menu">
-                <li><a class="rAnimal" href="#" onclick="mudarTela('registroAnimal.html')">Registra Animal</a></li>
-                <li><a class="rDoentes" href="#">Registra Animal Doente</a></li>
-                <li><a class="rGestantes" href="#">Registra Animal Gestantes</a></li>
+                <li><a class="rAnimal" href="registroAnimal.html">Registra Animal</a></li>
+                <li><a class="rDoentes" href="regAnimalDoente.html">Registra Animal Doente</a></li>
+                <li><a class="rGestantes" href="regAnimalGest.html">Registra Animal Gestantes</a></li>
             </ul>        
         </nav>
     </header>
     <div id="container">
-        <form action="">
-        <input  type="number" placeholder="ID Animal">
+        <form id="registroAnm" action="">
+            <label class="picture" for="pictureAnimal">
+                <span class="picture_text" id="picture_text"></span>
+            </label>
+            <input type="file" name="pictureAnimal" id="pictureAnimal">
             <br>
-            <select id="Raca" name="raca">
+            
+            <input id="idAnimal" type="number" placeholder="ID Animal" required>
+            <br>
+            <select id="Raca" name="raca" required>
                 <option value="" disabled selected hidden>Escolha a Raça</option>
                 <option value="ovelha">Ovelha</option>
                 <option value="cabrino">Cabrino</option>
             </select>
             <br>
-            <select id="genero" name="genero">
+            <select id="genero" name="genero" required>
                <option value="" disabled selected hidden>Escolha o Gênero</option>
                 <option value="masculino">Macho</option>
                 <option value="feminino">Fêmea</option>
             </select>
             <br>
-            <input type="number" placeholder="Idade">
+            <input id="idade" type="number" placeholder="Idade" required>
             <br>
-            <input type="number" step="0.01" placeholder="Peso">
+            <input id="peso" type="number" step="0.01" placeholder="Peso" required>
             <br>
-            <input type="text" placeholder="Tipo Sanguíneo">
+            <input id="tipoSanguineo" type="text" placeholder="Tipo Sanguíneo" required>
             <br>
-            <button>Cadastra</button>
+            <button type="submit" value="envio">Cadastrar</button>
         </form>        
     </div>
     <script src="../js/registroAnimal.js"></script>

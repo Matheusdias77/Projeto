@@ -38,6 +38,7 @@ form.addEventListener('submit', function(event) {
 
     salvarDados(nome, email, senha);
 
+    //alterar no css, colocar alguma mensagem na tela
     mensagemSucesso.textContent = 'Cadastro bem-sucedido!';
     mensagemSucesso.style.display = 'block';
 
@@ -51,11 +52,11 @@ form.addEventListener('submit', function(event) {
 
 
 function carregarDados() {
-    const dadosExistenteString = localStorage.getItem('cadastrados');
+    const dadosExistenteaux = localStorage.getItem('cadastrados');
     let dadosExistente = [];
 
     try {
-        dadosExistente = JSON.parse(dadosExistenteString) || [];
+        dadosExistente = JSON.parse(dadosExistenteaux) || [];
     } catch (error) {
         console.error('Erro ao analisar os dados existentes:', error);
     }

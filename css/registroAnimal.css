@@ -124,3 +124,42 @@ button {
     margin-bottom: 20px;
 }
 
+/*Alterações no modelo da imagem, encaixa ela na página*/
+
+#pictureAnimal{
+    display: none;
+}
+
+.picture{
+    max-width: 400px;
+    height: 200px;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    border: 2px dashed #aaa;
+    cursor: pointer;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+}
+
+.picture:hover{
+    color: #777;
+    background: #ccc;
+}
+
+.picture:active{
+    color: #4caf50;
+    border-color: #4caf50;
+    background: #ddd;
+    box-shadow: 0 0 10px #4caf50;
+}
+
+.picture_img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#pictureContainer{
+    margin-top: 10px;
+}
