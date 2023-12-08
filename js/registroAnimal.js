@@ -1,3 +1,5 @@
+
+
 var input = document.getElementById("imageInput");
 var preview = document.getElementById("previewImage");
 var deleteButton = document.getElementById("deleteButton");
@@ -26,3 +28,9 @@ deleteButton.addEventListener("click", function () {
     input.value = ""; // Limpar o valor da entrada de arquivo
     deleteButton.style.display = "none"; // Ocultar o botão de exclusão
 });
+
+function mudarTela(destino) {
+    setTimeout(function() {
+        window.location.href = destino;
+    }, 500);
+}

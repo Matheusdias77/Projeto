@@ -20,6 +20,8 @@ header h1 {
     font-size: 50px;
     display: inline-block;
     font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
+    user-select: none;
 }
 
 #menu {
