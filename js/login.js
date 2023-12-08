@@ -21,3 +21,4 @@ formulario.addEventListener('submit', function(event) {
 function verificarUsuario(email, senha) {
     return dados.some(user => user.email === email && user.senha === senha);
 }
+

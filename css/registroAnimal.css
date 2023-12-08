@@ -62,14 +62,63 @@ header h1 {
     padding: 40px; 
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 41em;
+    width: 30em;
     height: 46em;
-    margin-top: 20px;
-    margin-left: 598px;
+    margin-top: 25px;
+    margin-left: 677px;
+}
+
+form {
+    margin-top: 250px;
+}
+
+#tipo {
+    padding-right: 300px;
 }
 
 input {
     width: 100%;
-    padding: 10px;
-    margin-top: -100px;
-  }
+    padding: 12px;
+    text-align: left;
+    padding-right: 300px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    font-size: 16px;
+    transition: border 0.1s ease-in-out;
+}
+
+input:focus {
+    border-color: #007BFF; 
+}
+
+input::-webkit-inner-spin-button {
+    margin-right: -290px; 
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    text-align: left;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    font-size: 16px;
+}
+
+button {
+    font-size: 20px;
+    padding: 12px 200px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
