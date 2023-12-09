@@ -42,13 +42,12 @@ form.addEventListener('submit', function(event) {
     document.getElementById('mensagemSucesso').textContent = 'Cadastro bem-sucedido!';
     document.getElementById('mensagemSucesso').style.display = 'block';
 
-    // Oculta a mensagem após alguns segundos e redireciona para a página de login
     setTimeout(function () {
         endNome.value = '';
         endEmail.value = '';
         endSenha.value = '';
         document.getElementById('mensagemSucesso').style.display = 'none';
-        window.location.href = 'login.html'; // Altere para o nome da sua página de login
+        window.location.href = 'login.html';
     }, 1000);
 });
 
