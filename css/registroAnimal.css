@@ -131,8 +131,10 @@ button {
 }
 
 .picture{
-    max-width: 400px;
-    height: 200px;
+    max-width: 500px;
+    height: 220px;
+    margin-top: -250px;
+    margin-bottom: 30px;
     background: #ddd;
     display: flex;
     align-items: center;
