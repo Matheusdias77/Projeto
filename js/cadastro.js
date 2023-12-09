@@ -4,27 +4,28 @@ let dados;
 
 
 form.addEventListener('submit', function(event) {
-    event.preventDefault()
+    event.preventDefault();
 
     const endEmail = document.getElementById('E-mail');
     const endNome = document.getElementById('nome');
     const endSenha = document.getElementById('Senha');
-    
+    const mensagemSucesso = document.getElementById('mensagemSucesso');
+
     let nome = document.getElementById('nome').value;
     let email = document.getElementById('E-mail').value;
     let senha = document.getElementById('Senha').value;
 
-    if(!nome || !email || !senha){
-        if(!senha){
+    if (!nome || !email || !senha) {
+        if (!senha) {
             endSenha.classList.add('erro');
         }
-        if(!email){
+        if (!email) {
             endEmail.classList.add('erro');
         }
-        if(!nome){
+        if (!nome) {
             endNome.classList.add('erro');
         }
-        return
+        return;
     }
 
     if (validarEmail(email)) {
@@ -38,17 +39,19 @@ form.addEventListener('submit', function(event) {
 
     salvarDados(nome, email, senha);
 
-    //alterar no css, colocar alguma mensagem na tela
-    mensagemSucesso.textContent = 'Cadastro bem-sucedido!';
-    mensagemSucesso.style.display = 'block';
+    document.getElementById('mensagemSucesso').textContent = 'Cadastro bem-sucedido!';
+    document.getElementById('mensagemSucesso').style.display = 'block';
 
-    setTimeout(function() {
+    // Oculta a mensagem após alguns segundos e redireciona para a página de login
+    setTimeout(function () {
         endNome.value = '';
         endEmail.value = '';
         endSenha.value = '';
-        mensagemSucesso.style.display = 'none';
-    }, 3000);
+        document.getElementById('mensagemSucesso').style.display = 'none';
+        window.location.href = 'login.html'; // Altere para o nome da sua página de login
+    }, 1000);
 });
+
 
 
 function carregarDados() {

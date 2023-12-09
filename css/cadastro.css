@@ -1,9 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
 
-.mensagem-sucesso {
-    color: green;
-    margin-top: 10px;
-  }
+#mensagemSucesso {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background-color: green;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
 
 body {
   font-family: 'Arial', sans-serif;
@@ -50,7 +61,7 @@ body {
 }
 
 input {
-  width: 30%;
+  width: 20%;
   padding: 10px;
   margin: 10px 0;
   border: none;
