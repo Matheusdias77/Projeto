@@ -32,10 +32,10 @@ header h1 {
     padding: 40px; 
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 30em;
+    width: 50em;
     height: 46em;
     margin-top: 25px;
-    margin-left: 677px;
+    margin-left: 350px;
 }
 
 form {
@@ -50,7 +50,6 @@ input {
     width: 100%;
     padding: 12px;
     text-align: left;
-    padding-right: 300px;
     margin: 8px 0;
     box-sizing: border-box;
     border: 1px solid #ccc;
@@ -92,16 +91,16 @@ button {
     margin-bottom: 20px;
 }
 
-/*Alterações no modelo da imagem, encaixa ela na página*/
 
 #pictureAnimal{
     display: none;
 }
 
 .picture{
-    max-width: 500px;
+    max-width: 400px;
     height: 220px;
     margin-top: -250px;
+    margin-left: -150px;
     margin-bottom: 30px;
     background: #ddd;
     display: flex;
@@ -132,4 +131,9 @@ button {
 
 #pictureContainer{
     margin-top: 10px;
+}
+
+#idAnimal {
+    margin-left: 100px;
+    padding-right: -50px;
 }
