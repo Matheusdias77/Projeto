@@ -21,10 +21,9 @@ function exibirAnimais() {
             imagem.src = cadastrados.imagem;
             imagem.alt = `Imagem do Animal ${cadastrados.idAnimal}`;
 
-
+            animalContainer.appendChild(imagem);
             animalContainer.appendChild(idAnimal);
             animalContainer.appendChild(genero);
-            animalContainer.appendChild(imagem);
 
             animal.appendChild(animalContainer);
             
