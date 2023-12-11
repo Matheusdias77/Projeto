@@ -68,7 +68,7 @@ input {
 
 
 #idAnimal {
-    margin-right: 25px;
+    margin-right: 30px;
 }
 
 
@@ -106,7 +106,7 @@ select {
 }
 
 #peso {
-    margin-right: 25px;
+    margin-right: 30px;
 }
 
 .checkbox-group {
@@ -139,7 +139,7 @@ select {
 
 button {
     font-size: 20px;
-    padding: 12px 200px;
+    padding: 12px 220px;
     background-color: #4caf50;
     color: #fff;
     border: none;
@@ -156,7 +156,7 @@ button {
 
 .picture{
     max-width: 100%;
-    width: 520px;
+    width: 525px;
     height: 220px;
     margin-top: -250px;
     margin-bottom: 20px;
@@ -183,6 +183,6 @@ button {
 }
 
 .picture_img{
-    max-width: 100%;
-    max-height: 100%;
+    width: 530px;
+    height: 230px;
 }
