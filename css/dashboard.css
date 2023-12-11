@@ -23,7 +23,7 @@ header h1 {
 }
 
 #informacoes {
-    margin: 30px;
+    margin: 50px;
 }
 
 .nomeCadastrados {
@@ -52,6 +52,7 @@ header h1 {
     width: 105em; 
     cursor: pointer;
     user-select: none;
+    transition: box-shadow 0.3s ease;
 }
 
 .totalAnimal::before {
@@ -64,6 +65,8 @@ header h1 {
     background-color: #0CB913;
     border-radius: 8px 0 0 8px;
 }
+
+
 
 #total-animais {
     align-self: flex-end;
@@ -156,4 +159,23 @@ h2 {
 p {
     font-size: 18px;
     font-family: 'Times New Roman', Times, serif;
+}
+
+.totalAnimal,
+.totalDoentes,
+.totalGestante {
+    transition: border 0.3s ease, background-color 0.3s ease;
+}
+
+.totalAnimal:hover,
+.totalDoentes:hover,
+.totalGestante:hover {
+    background-color: #f0f0f0; 
+    cursor: pointer;
+}
+
+.totalAnimal:active,
+.totalDoentes:active,
+.totalGestante:active {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
 }
