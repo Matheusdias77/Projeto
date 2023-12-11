@@ -3,6 +3,24 @@ let picture  = document.getElementById('pictureAnimal');
 let textoPicture = document.getElementById('picture_text');
 let pictureContainer = document.getElementById('pictureContainer');
 textoPicture.innerHTML = 'Selecione a imagem';
+let saude = document.getElementsByName('Doente');
+let gestante = document.getElementsByName('Gestante');
+
+if(saude){
+    saude.addEventListener('change', function(){
+        if(saude.checked){
+            console.log('Doente marcado!!');
+        }
+    });
+}
+
+if(gestante){
+    gestante.addEventListener('change', function(){
+        if(gestante.checked){
+            console.log('gestante marcado');
+        }
+    });
+}
 
 if (registro) {
     registro.addEventListener('submit', function(event){
@@ -13,8 +31,6 @@ if (registro) {
         let idade = document.getElementById('idade').value;
         let peso = document.getElementById('peso').value;
         let tipoSanguineo = document.getElementById('tipoSanguineo').value;
-        let saude = document.getElementsByName('saude').value;
-        let gestante = document.getElementsByName('gestante').value;
 
 
         if (validarAnimal(idAnimal)) {
@@ -35,6 +51,8 @@ if (registro) {
             document.getElementById('idade').value = '';
             document.getElementById('peso').value = '';
             document.getElementById('tipoSanguineo').value = '';
+            saude.checked = false;
+            gestante.checked = false;
             textoPicture.innerHTML = '';
         }, 1000);
     });
