@@ -13,6 +13,9 @@ if (registro) {
         let idade = document.getElementById('idade').value;
         let peso = document.getElementById('peso').value;
         let tipoSanguineo = document.getElementById('tipoSanguineo').value;
+        let saude = document.getElementsByName('saude').value;
+        let gestante = document.getElementsByName('gestante').value;
+
 
         if (validarAnimal(idAnimal)) {
             document.getElementById('idAnimal').value = '';
