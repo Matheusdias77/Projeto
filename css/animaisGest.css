@@ -42,19 +42,6 @@ header h1:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-button {
-    font-size: 20px;
-    padding: 12px 20px;
-    margin-top: 600px;
-    margin-left: 470px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-
 #container p {
     font-size: 2vw; 
     margin-bottom: 1vw; 

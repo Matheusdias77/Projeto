@@ -1,15 +1,14 @@
-
-
 document.addEventListener("DOMContentLoaded", function() {
-    exibirDetalhesAnimais();
+    exibirAnimais();
 });
 
-function exibirDetalhesAnimais() {
+function exibirAnimais() {
     const dados = carregarDados();
     const animal = document.getElementById("cardAnimal");
 
     if (animal) {
         dados.forEach(cadastrados => {
+            const animalContainer = document.createElement("div");
             //animalContainer.classList.add("animal-container");
 
             const idAnimal = document.createElement("p");
@@ -22,9 +21,12 @@ function exibirDetalhesAnimais() {
             imagem.src = cadastrados.imagem;
             imagem.alt = `Imagem do Animal ${cadastrados.idAnimal}`;
 
-            animal.appendChild(idAnimal);
-            animal.appendChild(genero);
-            animal.appendChild(imagem);
+
+            animalContainer.appendChild(idAnimal);
+            animalContainer.appendChild(genero);
+            animalContainer.appendChild(imagem);
+
+            animal.appendChild(animalContainer);
             
         });
     }
