@@ -34,16 +34,22 @@
             <br>
             <br>
             <input id="peso" type="number" step="0.01" placeholder="Peso" required>
-            <br>
             <input id="tipoSanguineo" type="text" placeholder="Tipo Sanguíneo" required>
             <br>
+            <div class="checkbox-group">
+                <input id="checkDoente" type="checkbox" name="Doente" value="Doente">
+                <label for="checkDoente">Doente</label>
+              </div>
+            
+              <div class="checkbox-group">
+                <input id="checkGestante" type="checkbox" name="Gestante" value="Gestante">
+                <label for="checkGestante">Gestante</label>
+              </div>
             <label>
                 <input type="checkbox" id="doente" value="Doente"> Doente
-                <div id="descricaoDoente"></div>
             </label>
             <label>
-                <input type="checkbox" id="gestante" value="Gestante"> Gestante
-                <div id="descricaoGest"></div>
+                <input type="checkbox" id="doente" value="Gestante"> Gestante
             </label>
             <br>
             <button type="submit" value="envio">Cadastrar</button>
