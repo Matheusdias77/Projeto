@@ -3,13 +3,13 @@ let picture  = document.getElementById('pictureAnimal');
 let textoPicture = document.getElementById('picture_text');
 let pictureContainer = document.getElementById('pictureContainer');
 textoPicture.innerHTML = 'Selecione a imagem';
-let saude = document.getElementsByName('Doente');
-let gestante = document.getElementsByName('Gestante');
+let saude = document.getElementById('doente');
+let gestante = document.getElementById('gestante');
 
 if(saude){
     saude.addEventListener('change', function(){
         if(saude.checked){
-            console.log('Doente marcado!!');
+            const descricao = document.createElement('textarea');
         }
     });
 }
