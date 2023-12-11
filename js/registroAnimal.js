@@ -8,8 +8,20 @@ let gestante = document.getElementById('gestante');
 
 if(saude){
     saude.addEventListener('change', function(){
+        const cardDescricao = document.getElementById('descricaoDoente');
         if(saude.checked){
             const descricao = document.createElement('textarea');
+
+            const tratamento = document.createElement('textarea');
+
+            const tipoDoenca = document.createElement('input');
+            tipoDoenca.type = 'text';
+
+            cardDescricao.appendChild(tipoDoenca);
+            cardDescricao.appendChild(descricao);
+            cardDescricao.appendChild(tratamento);
+        }else{
+            cardDescricao.innerHTML = '';
         }
     });
 }
@@ -17,7 +29,7 @@ if(saude){
 if(gestante){
     gestante.addEventListener('change', function(){
         if(gestante.checked){
-            console.log('gestante marcado');
+            const descricaoGest = document.getElementById('descricaoGest');
         }
     });
 }
