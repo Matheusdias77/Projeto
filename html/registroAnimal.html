@@ -37,14 +37,16 @@
             <input id="tipoSanguineo" type="text" placeholder="Tipo Sanguíneo" required>
             <br>
             <div class="checkbox-group">
-                <input type="checkbox" id="doente" value="Doente"> Doente
-                <label for="checkDoente">Doente</label>
+                <input type="checkbox" id="doente" value="Doente"> 
+                <label for="doente">Doente</label>
+                <div id="descricaoDoente"></div>
               </div>
             
               <div class="checkbox-group">
-                <input type="checkbox" id="doente" value="Gestante"> Gestante
-                <label for="checkGestante">Gestante</label>
-              </div>
+                <input type="checkbox" id="gestante" value="Gestante"> 
+                <label for="gestante">Gestante</label>
+                <div id="descricaoGest"></div>    
+            </div>
             <br>
             <button type="submit" value="envio">Cadastrar</button>
         </form>        
