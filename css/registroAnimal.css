@@ -32,10 +32,10 @@ header h1 {
     padding: 40px; 
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 50em;
+    width: 52em;
     height: 46em;
     margin-top: 25px;
-    margin-left: 350px;
+    margin-left: 480px;
 }
 
 form {
@@ -44,23 +44,6 @@ form {
 
 #tipo {
     padding-right: 300px;
-}
-
-input {
-    width: 100%;
-    padding: 12px;
-    text-align: left;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    outline: none;
-    font-size: 16px;
-    transition: border 0.1s ease-in-out;
-}
-
-input:focus {
-    border-color: #007BFF; 
 }
 
 input::-webkit-inner-spin-button {
@@ -97,10 +80,10 @@ button {
 }
 
 .picture{
-    max-width: 400px;
+    max-width: 4%;
     height: 220px;
-    margin-top: -250px;
-    margin-left: -150px;
+    margin-top: -400px;
+    margin-left: 300px;
     margin-bottom: 30px;
     background: #ddd;
     display: flex;
