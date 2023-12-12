@@ -63,14 +63,8 @@ function exibirDoentes(){
                 const idAnimal = document.createElement("p");
                 idAnimal.textContent = `ID: ${cadastrados.idAnimal}`;
 
-                const tipoDoenca = document.createElement("p");
-                tipoDoenca.textContent = `Tipo de Doença: ${cadastrados.tipoDoenca}`;
-
                 const descricao = document.createElement("p");
-                descricao.textContent = `Descrição: ${cadastrados.descricao}`;
-
-                const tratamento = document.createElement("p");
-                tratamento.textContent = `Tratamento: ${cadastrados.tratamento}`;
+                descricao.textContent = `${cadastrados.descricao}`;
 
                 const imagem = document.createElement("img");
                 imagem.src = cadastrados.imagem;
@@ -78,9 +72,7 @@ function exibirDoentes(){
 
                 animalContainer.appendChild(imagem);
                 animalContainer.appendChild(idAnimal);
-                animalContainer.appendChild(tipoDoenca);
                 animalContainer.appendChild(descricao);
-                animalContainer.appendChild(tratamento);
 
                 animal.appendChild(animalContainer);
             } 
