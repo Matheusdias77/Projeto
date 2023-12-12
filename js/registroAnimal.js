@@ -11,11 +11,17 @@ if(saude){
         const cardDescricao = document.getElementById('descricaoDoente');
         if(saude.checked){
             const descricao = document.createElement('textarea');
+            descricao.placeholder = 'Descrição da doença';
+            //descricao.classList.add('estilo');
 
             const tratamento = document.createElement('textarea');
+            tratamento.placeholder = 'Descreva o tratamento';
+            //tratamento.classList.add('estilo');
 
             const tipoDoenca = document.createElement('input');
             tipoDoenca.type = 'text';
+            tipoDoenca.placeholder = 'Informe a doença';
+            //tipoDoenca.classList.add('estilo');
 
             cardDescricao.appendChild(tipoDoenca);
             cardDescricao.appendChild(descricao);
@@ -26,10 +32,23 @@ if(saude){
     });
 }
 
+let dataGestacao;
 if(gestante){
     gestante.addEventListener('change', function(){
+        const descricaoGest = document.getElementById('descricaoGest');
         if(gestante.checked){
-            const descricaoGest = document.getElementById('descricaoGest');
+            const dataDescoberta = document.createElement('input');
+            dataDescoberta.id = 'dataDescoberta';
+            dataDescoberta.type = 'date';
+            dataDescoberta.required = true;
+
+            //dataDescoberta.classList.add('estilo');
+            descricaoGest.appendChild(dataDescoberta);
+
+            dataGestacao = new Date(dataDescoberta.value);
+        }else{
+            descricaoGest.innerHTML = '';
+            dataGestacao = undefined;
         }
     });
 }
@@ -43,6 +62,7 @@ if (registro) {
         let idade = document.getElementById('idade').value;
         let peso = document.getElementById('peso').value;
         let tipoSanguineo = document.getElementById('tipoSanguineo').value;
+        const tempoGest = data(dataGestacao);
 
 
         if (validarAnimal(idAnimal)) {
@@ -51,10 +71,9 @@ if (registro) {
             return;
         }
 
-        // Onde tem esse alert coloque algo bonito para dizer que foi cadastrado
         alert("Animal cadastrado");
 
-        salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagemAnimal);
+        salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagemAnimal, tempoGest);
 
         setTimeout(function() {
             document.getElementById('idAnimal').value = '';
@@ -120,7 +139,7 @@ function validarAnimal(idAnimal) {
     return dados.some(dado => dado.idAnimal === idAnimal);
 }
 
-function salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagem) {
+function salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagem, tempoGest) {
     dados = carregarDados();
     
     dados.push({
@@ -130,8 +149,43 @@ function salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagem)
         idade: idade,
         peso: peso,
         tipoSang: tipoSanguineo,
-        imagem: imagem    
+        imagem: imagem,
+        tempoGest: tempoGest    
     });
+
+    localStorage.setItem('registroAnimal', JSON.stringify(dados));
+}
+
+function data(descobertaGestacao) {
+    const milissegundos = Date.now() - descobertaGestacao.getTime();
+    const diferencaSegundos = milissegundos / 1000;
+
+    const dias = Math.floor(diferencaSegundos / (60 * 60 * 24));
+    const horas = Math.floor((diferencaSegundos % (60 * 60 * 24)) / (60 * 60));
+    const minutos = Math.floor((diferencaSegundos % (60 * 60)) / 60);
+
+    const tempoGestacao = {
+        dias: dias,
+        horas: horas,
+        minutos: minutos
+    };
+
+    return tempoGestacao;
+}
+
+function iniciarIntervalo() {
+    intervaloAtualizacao = setInterval(function () {
+        const tempoGest = data(dataGestacao);
+
+        atualizarTempo(tempoGest);
+    }, 60000); 
+}
+
+function atualizarTempo(tempoGest) {
+    const dados = carregarDados();
+    const ultimoAnimal = dados[dados.length - 1];
+
+    ultimoAnimal.tempoGest = tempoGest;
 
     localStorage.setItem('registroAnimal', JSON.stringify(dados));
 }
