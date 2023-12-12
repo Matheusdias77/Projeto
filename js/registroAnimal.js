@@ -11,15 +11,18 @@ if(saude){
         const cardDescricao = document.getElementById('descricaoDoente');
         if(saude.checked){
             const descricao = document.createElement('textarea');
+            descricao.id = 'descricao' 
             descricao.placeholder = 'Descrição da doença';
             //descricao.classList.add('estilo');
 
             const tratamento = document.createElement('textarea');
+            tratamento.id = 'tratamento';
             tratamento.placeholder = 'Descreva o tratamento';
             //tratamento.classList.add('estilo');
 
             const tipoDoenca = document.createElement('input');
             tipoDoenca.type = 'text';
+            tipoDoenca.id = 'tipoDoenca';
             tipoDoenca.placeholder = 'Informe a doença';
             //tipoDoenca.classList.add('estilo');
 
@@ -42,13 +45,14 @@ if(gestante){
             dataDescoberta.type = 'date';
             dataDescoberta.required = true;
 
+            dataDescoberta.addEventListener('change', function () {
+                dataGestacao = new Date(dataDescoberta.value);
+            });
             //dataDescoberta.classList.add('estilo');
             descricaoGest.appendChild(dataDescoberta);
-
-            dataGestacao = new Date(dataDescoberta.value);
         }else{
             descricaoGest.innerHTML = '';
-            dataGestacao = undefined;
+            dataGestacao = null;
         }
     });
 }
@@ -62,8 +66,6 @@ if (registro) {
         let idade = document.getElementById('idade').value;
         let peso = document.getElementById('peso').value;
         let tipoSanguineo = document.getElementById('tipoSanguineo').value;
-        const tempoGest = data(dataGestacao);
-
 
         if (validarAnimal(idAnimal)) {
             document.getElementById('idAnimal').value = '';
@@ -72,8 +74,30 @@ if (registro) {
         }
 
         alert("Animal cadastrado");
-
-        salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagemAnimal, tempoGest);
+                  
+         
+        if(gestante.checked){
+            const tempoGest = data(dataGestacao);
+            salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagemAnimal, tempoGest, null);
+        }else if(saude.checked){
+            let dadosDoenca = {
+                descricao: document.getElementById('descricao').value,
+                tratamento: document.getElementById('tratamento').value,
+                tipoDoenca: document.getElementById('tipoDoenca').value
+            }
+            salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagemAnimal, null, dadosDoenca);
+        }else if(saude.checked && gestante.checked){
+            const tempoGest = data(dataGestacao);
+            let dadosDoenca = {
+                descricao: document.getElementById('descricao').value,
+                tratamento: document.getElementById('tratamento').value,
+                tipoDoenca: document.getElementById('tipoDoenca').value
+            }
+            salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagemAnimal, tempoGest, dadosDoenca);
+        }else {
+            salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagemAnimal, null, null);
+        }
+        iniciarIntervalo();
 
         setTimeout(function() {
             document.getElementById('idAnimal').value = '';
@@ -139,7 +163,7 @@ function validarAnimal(idAnimal) {
     return dados.some(dado => dado.idAnimal === idAnimal);
 }
 
-function salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagem, tempoGest) {
+function salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagem, tempoGest, dadosDoenca) {
     dados = carregarDados();
     
     dados.push({
@@ -150,42 +174,56 @@ function salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagem,
         peso: peso,
         tipoSang: tipoSanguineo,
         imagem: imagem,
-        tempoGest: tempoGest    
+        tempoGest: tempoGest,
+        ...dadosDoenca   
     });
 
     localStorage.setItem('registroAnimal', JSON.stringify(dados));
 }
-
 function data(descobertaGestacao) {
-    const milissegundos = Date.now() - descobertaGestacao.getTime();
-    const diferencaSegundos = milissegundos / 1000;
+    if (descobertaGestacao) {
+        const milissegundos = Date.now() - descobertaGestacao.getTime();
+        const diferencaSegundos = milissegundos / 1000;
 
-    const dias = Math.floor(diferencaSegundos / (60 * 60 * 24));
-    const horas = Math.floor((diferencaSegundos % (60 * 60 * 24)) / (60 * 60));
-    const minutos = Math.floor((diferencaSegundos % (60 * 60)) / 60);
+        const dias = Math.floor(diferencaSegundos / (60 * 60 * 24));
+        const horas = Math.floor((diferencaSegundos % (60 * 60 * 24)) / (60 * 60));
+        const minutos = Math.floor((diferencaSegundos % (60 * 60)) / 60);
 
-    const tempoGestacao = {
-        dias: dias,
-        horas: horas,
-        minutos: minutos
-    };
+        const tempoGestacao = {
+            dias: dias,
+            horas: horas,
+            minutos: minutos
+        };
 
-    return tempoGestacao;
+        return tempoGestacao;
+    } else {
+        return null;
+    }
 }
+
 
 function iniciarIntervalo() {
     intervaloAtualizacao = setInterval(function () {
-        const tempoGest = data(dataGestacao);
+        const dados = carregarDados();
 
-        atualizarTempo(tempoGest);
+        dados.forEach(animal => {
+            if (animal.tempoGest) {
+                const dataDescoberta = animal.dataDescoberta; 
+                const tempoGestAtualizado = data(dataDescoberta);
+                animal.tempoGest = tempoGestAtualizado;
+            }
+        });
+
+        localStorage.setItem('registroAnimal', JSON.stringify(dados));
     }, 60000); 
 }
 
 function atualizarTempo(tempoGest) {
     const dados = carregarDados();
-    const ultimoAnimal = dados[dados.length - 1];
 
-    ultimoAnimal.tempoGest = tempoGest;
+    dados.forEach(animal => {
+        animal.tempoGest = tempoGest;
+    });
 
     localStorage.setItem('registroAnimal', JSON.stringify(dados));
 }
