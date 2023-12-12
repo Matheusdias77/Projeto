@@ -29,27 +29,55 @@ header h1:hover {
 }
 
 #container {
-    width: 60em;
-    height: 45em;
+    width: 35em;
+    height: 46em;
+    margin-top: 25px;
+    margin-left: 620px;
     margin: 20px auto;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: #E0E0E0;
+    background-color: #fff;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+button {
+    font-size: 20px;
+    padding: 12px 20px;
+    margin-top: 600px;
+    margin-left: 470px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#botaoMais:hover {
+    background-color: #45a049; 
+}
+
+
 #container p {
-    font-size: 2vw; 
-    margin-bottom: 1vw; 
-    user-select: none;
+    margin-left: 100px; 
+
 }
 
 #container img {
-    max-width: 100%; 
-    height: auto; 
-    margin-bottom: 2vw;
+    width: 70px; 
+    height: 50px;
+    border-radius: 20px;
 }
+
+#cardAnimal {
+    padding: 5px 200px 0px 5px;
+    margin-left: 500px;
+    margin-top: -300px;
+    background-color: #E0E0E0; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+

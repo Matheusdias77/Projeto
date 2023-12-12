@@ -11,23 +11,22 @@ function mudarTela(destino) {
 
 function quantidadeAnimal() {
     const dados = carregarDados();
-    const quantidade = dados.length;
 
     const totalAnimais = document.getElementById("total-animais");
     if (totalAnimais) {
-        totalAnimais.textContent = quantidade;
+        totalAnimais.textContent = dados.length;
     }
 
     const totalDoentes = document.getElementById('total-doentes');
     if(totalDoentes){
-        // const totalDoentes = dados.filter(animal => /* Condição para animais doentes */).length;
-        totalDoentes.textContent = quantidade;
+        const quantDoente = dados.filter(animal => animal.tipoDoenca).length;
+        totalDoentes.textContent = quantDoente;
     }
 
     const totalGestante = document.getElementById('total-gestantes');
     if(totalGestante){
-        // const totalGestantes = dados.filter(animal => /* Condição para animais gestantes */).length; 
-        totalGestante.textContent = quantidade;
+        const quantGestant = dados.filter(animal => animal.tempoGest!=null).length; 
+        totalGestante.textContent = quantGestant;
     }
 }
 
