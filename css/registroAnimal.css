@@ -22,6 +22,17 @@ header h1 {
     cursor: pointer;
     user-select: none;
 }
+header h1:hover {
+    cursor: pointer;
+    text-shadow: 0 0 10px rgba(133, 132, 132, 0.8); 
+}
+
+header img {
+    margin-right: -750px; 
+    margin-left: 750px; 
+    width: 24px;
+    height: 24px;
+}
 
 #container {
     justify-content: center;
