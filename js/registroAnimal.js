@@ -166,9 +166,6 @@ function salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagem,
     localStorage.setItem('registroAnimal', JSON.stringify(dados));
 }
 
-setInterval(function() {
-    atualizarTempoGestacao();
-}, 5000);
 
 function calcularDiferenca(dataInicio, dataAtual) {
     const diferencaEmMilissegundos = dataAtual - dataInicio;
@@ -178,31 +175,6 @@ function calcularDiferenca(dataInicio, dataAtual) {
     const minutos = diferencaEmMinutos % 60;
 
     return { dias, horas, minutos };
-}
-
-function atualizarTempoGestacao() {
-    const dados = carregarDados();
-
-    dados.forEach(animal => {
-        if (animal.tempoGest && typeof animal.tempoGest === 'object') {
-            console.log(`Atualizando tempo de gestação para o animal ${animal.idAnimal}`);
-            try {
-                const dataGestacao = new Date(animal.dataGestacao);
-                const diferencaAtualizada = calcularDiferenca(dataGestacao, new Date());
-
-                animal.tempoGest.dias = diferencaAtualizada.dias;
-                animal.tempoGest.horas = diferencaAtualizada.horas;
-                animal.tempoGest.minutos = diferencaAtualizada.minutos;
-
-                console.log(`Tempo de gestação atualizado: ${JSON.stringify(animal.tempoGest)}`);
-            } catch (error) {
-                console.error(`Erro ao atualizar o tempo de gestação para o animal ${animal.idAnimal}: ${error}`);
-                animal.tempoGest = null; 
-            }
-        }
-    });
-
-    localStorage.setItem('registroAnimal', JSON.stringify(dados));
 }
 
 function mudarTela(destino) {

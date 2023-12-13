@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const urlAtual = window.location.href;
+    atualizarTempoGestacao();
     if(urlAtual.includes('animaisTotal.html')){
         exibirAnimais();
     }else if(urlAtual.includes('animaisGest.html')){
@@ -156,7 +157,6 @@ function atualizarTempoGestacao() {
 
     dados.forEach(animal => {
         if (animal.tempoGest && typeof animal.tempoGest === 'object') {
-            console.log(`Atualizando tempo de gestação para o animal ${animal.idAnimal}`);
             try {
                 const dataGestacao = new Date(animal.dataGestacao);
                 const diferencaAtualizada = calcularDiferenca(dataGestacao, new Date());
@@ -167,7 +167,6 @@ function atualizarTempoGestacao() {
 
                 console.log(`Tempo de gestação atualizado: ${JSON.stringify(animal.tempoGest)}`);
             } catch (error) {
-                console.error(`Erro ao atualizar o tempo de gestação para o animal ${animal.idAnimal}: ${error}`);
                 animal.tempoGest = null; 
             }
         }
