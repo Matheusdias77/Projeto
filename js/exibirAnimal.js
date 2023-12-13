@@ -36,6 +36,7 @@ function exibirAnimais() {
             editar.type = 'button';
             editar.classList.add('button');
             editar.textContent = 'Editar';
+            editar.addEventListener('click', () => editarAnimal(cadastrados.idAnimal));
 
             const deletar = document.createElement('button');
             deletar.type = 'button'; 
@@ -133,6 +134,10 @@ function exibirGestantes(){
             } 
         });
     }
+}
+
+function editarAnimal(idAnimal){
+    window.location.href = `editar.html?id=${idAnimal}`;
 }
 
 function carregarDados() {
