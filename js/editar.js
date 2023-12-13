@@ -3,3 +3,10 @@ document.addEventListener('DOMContentLoaded', function(){
     const idAnimal = urlP.get('id');
 
 });
+
+
+function mudarTela(destino) {
+    setTimeout(function() {
+        window.location.href = destino;
+    }, 500);
+}
