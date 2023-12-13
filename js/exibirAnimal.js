@@ -74,6 +74,7 @@ function exibirDoentes(){
                 animalContainer.classList.add("animal-container");
 
                 const imagemInformacoes = document.createElement("div");
+                //imagemInformacoes.classList.add("estilo");
 
                 const idAnimal = document.createElement("p");
                 idAnimal.textContent = `ID: ${cadastrados.idAnimal}`;
@@ -90,9 +91,11 @@ function exibirDoentes(){
                 curado.classList.add('button');
                 curado.textContent = 'a Definir';
 
-                animalContainer.appendChild(imagem);
-                animalContainer.appendChild(idAnimal);
-                animalContainer.appendChild(descricao);
+                imagemInformacoes.appendChild(imagem);
+                imagemInformacoes.appendChild(idAnimal);
+                imagemInformacoes.appendChild(descricao);
+
+                animalContainer.appendChild(imagemInformacoes);
                 animalContainer.appendChild(curado);
 
                 animal.appendChild(animalContainer);
@@ -112,15 +115,18 @@ function exibirGestantes(){
                 const animalContainer = document.createElement("div");
                 animalContainer.classList.add("animal-container");
 
+                const imagemInformacoes = document.createElement("div");
+                //imagemInformacoes.classList.add("estilo");
+
                 const idAnimal = document.createElement("p");
                 idAnimal.textContent = `ID: ${cadastrados.idAnimal}`;
 
                 const tempoDias = document.createElement("p");
-                tempoDias.textContent = `Dias: ${cadastrados.tempoGest.dias}`;
+                tempoDias.textContent = `D: ${cadastrados.tempoGest.dias}`;
                 const tempoHoras = document.createElement("p");
-                tempoHoras.textContent = `Horas: ${cadastrados.tempoGest.horas}`;
+                tempoHoras.textContent = `H: ${cadastrados.tempoGest.horas}`;
                 const tempoMinutos = document.createElement("p");
-                tempoMinutos.textContent = `Minutos: ${cadastrados.tempoGest.minutos}`;
+                tempoMinutos.textContent = `M: ${cadastrados.tempoGest.minutos}`;
 
                 const imagem = document.createElement("img");
                 imagem.src = cadastrados.imagem;
@@ -131,11 +137,13 @@ function exibirGestantes(){
                 fimGestacao.classList.add('button');
                 fimGestacao.textContent = 'a Definir';
 
-                animalContainer.appendChild(imagem);
-                animalContainer.appendChild(idAnimal);
-                animalContainer.appendChild(tempoDias);
-                animalContainer.appendChild(tempoHoras);
-                animalContainer.appendChild(tempoMinutos);
+                imagemInformacoes.appendChild(imagem);
+                imagemInformacoes.appendChild(idAnimal);
+                imagemInformacoes.appendChild(tempoDias);
+                imagemInformacoes.appendChild(tempoHoras);
+                imagemInformacoes.appendChild(tempoMinutos);
+
+                animalContainer.appendChild(imagemInformacoes);
                 animalContainer.appendChild(fimGestacao);
 
                 animal.appendChild(animalContainer);
@@ -148,11 +156,24 @@ function editarAnimal(idAnimal){
     window.location.href = `editar.html?id=${idAnimal}`;
 }
 
-function excluirAnimal(idAnimal){
-    let dados = carregarDados();
-    const indiceAnimal = dados.findIndex(animal => animal.idAnimal === idAnimal);
-    dados.splice(indiceAnimal, 1);
-    localStorage.setItem('registroAnimal', JSON.stringify(dados));
+function excluirAnimal(idAnimal) {
+    const confirmacao = confirm("Tem certeza que deseja excluir este animal?");
+
+    if (confirmacao) {
+        let dados = carregarDados();
+        const indiceAnimal = dados.findIndex(animal => animal.idAnimal === idAnimal);
+
+        if (indiceAnimal !== -1) {
+            dados.splice(indiceAnimal, 1);
+            localStorage.setItem('registroAnimal', JSON.stringify(dados));
+            alert("Animal excluído com sucesso!");
+            window.location.reload();
+        } else {
+            alert("Animal não encontrado!");
+        }
+    } else {
+        alert("Exclusão cancelada");
+    }
 }
 
 function carregarDados() {
