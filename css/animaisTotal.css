@@ -36,19 +36,6 @@ header img {
 }
 
 #container {
-    width: 35em;
-    height: 46em;
-    margin-top: 25px;
-    margin-left: 620px;
-    margin: 20px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #botaoMais {
@@ -81,7 +68,6 @@ header img {
 }
 
 #cardAnimal {
-    margin-left: 940px;
     margin-top: 0px;
     background-color: #f0eded3b; 
     border-radius: 8px; 
