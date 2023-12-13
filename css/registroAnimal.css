@@ -204,7 +204,7 @@ button {
 .picture_img{
     width: 530px;
     height: 224px;
-    margin-top: 755px;
+    margin-bottom: -4px;
     margin-left: 2px;
 }
 
