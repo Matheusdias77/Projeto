@@ -93,7 +93,7 @@ function exibirGestantes(){
         dados.forEach(cadastrados => {
             if (cadastrados.tempoGest!=null) {
                 const animalContainer = document.createElement("div");
-                //animalContainer.classList.add("animal-container");
+                animalContainer.classList.add("animal-container");
 
                 const idAnimal = document.createElement("p");
                 idAnimal.textContent = `ID: ${cadastrados.idAnimal}`;
