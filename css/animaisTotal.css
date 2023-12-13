@@ -82,7 +82,7 @@ header img {
 
 #cardAnimal {
     margin-left: 940px;
-    margin-top: -300px;
+    margin-top: 0px;
     background-color: #f0eded3b; 
     border-radius: 8px; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); 
@@ -117,8 +117,8 @@ header img {
 
 .button {
     margin: 0px;
-    margin-left: 510px;
-    margin-right: -650px;
+    margin-left: 480px;
+    margin-right: -700px;
     margin-bottom: 6px;
     background-color: #4caf50; 
     color: #fff;
