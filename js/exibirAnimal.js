@@ -16,7 +16,7 @@ function exibirAnimais() {
     if (animal) {
         dados.forEach(cadastrados => {
             const animalContainer = document.createElement("div");
-            //animalContainer.classList.add("animal-container");
+            animalContainer.classList.add("animal-container");
 
             const idAnimal = document.createElement("p");
             idAnimal.textContent = `ID: ${cadastrados.idAnimal}`;
@@ -30,11 +30,11 @@ function exibirAnimais() {
 
             const editar = document.createElement('button');
             editar.type = 'button';
-            //editar.classList.add('estilo');
+            editar.classList.add('button');
 
             const deletar = document.createElement('button');
             deletar.type = 'button'; 
-            //deletar.classList.add('estilo');
+            deletar.classList.add('button');
 
             animalContainer.appendChild(imagem);
             animalContainer.appendChild(idAnimal);

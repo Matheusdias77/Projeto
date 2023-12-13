@@ -11,23 +11,17 @@ if(saude){
     saude.addEventListener('change', function(){
         const cardDescricao = document.getElementById('descricaoDoente');
         if(saude.checked){
+
             const descricao = document.createElement('textarea');
             descricao.id = 'descricao' 
-            descricao.placeholder = 'Descrição da doença';
-            //descricao.classList.add('estilo');
+            descricao.placeholder = 'Descrição da Doença';
+            descricao.classList.add('estilo');
 
             const tratamento = document.createElement('textarea');
             tratamento.id = 'tratamento';
-            tratamento.placeholder = 'Descreva o tratamento';
-            //tratamento.classList.add('estilo');
+            tratamento.placeholder = 'Descreva o Tratamento';
+            tratamento.classList.add('estilo');
 
-            const tipoDoenca = document.createElement('input');
-            tipoDoenca.type = 'text';
-            tipoDoenca.id = 'tipoDoenca';
-            tipoDoenca.placeholder = 'Informe a doença';
-            //tipoDoenca.classList.add('estilo');
-
-            cardDescricao.appendChild(tipoDoenca);
             cardDescricao.appendChild(descricao);
             cardDescricao.appendChild(tratamento);
         }else{
@@ -48,6 +42,7 @@ if (gestante) {
             dataDescoberta.id = 'dataDescoberta';
             dataDescoberta.type = 'date';
             dataDescoberta.required = true;
+            dataDescoberta.classList.add('dataDescoberta');
 
             dataDescoberta.addEventListener('change', function () {
                 dataGestacao = new Date(dataDescoberta.value);

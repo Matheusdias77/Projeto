@@ -197,3 +197,50 @@ button {
     width: 530px;
     height: 230px;
 }
+
+.estilo {
+    padding: 5px; 
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    font-size: 14px; 
+    outline: none; 
+    transition: border-color 0.3s ease; 
+    width: 50%;
+}
+
+.estilo:focus {
+    border-color: #4caf50;
+}
+
+#descricaoDoente {
+    display:flex; 
+
+}
+
+.dataDescoberta {
+    padding: 5px; 
+    padding-left: 60px;
+    margin-left: 50px;
+    margin-right: 5px;
+    margin-top: 10px;
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    font-size: 14px; 
+    outline: none; 
+    transition: border-color 0.3s ease; 
+    width: 50%;
+}
+
+#descricaoGest:focus {
+    border-color: #4caf50;
+}
+
+
+
+
+ 
