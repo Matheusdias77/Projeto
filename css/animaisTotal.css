@@ -35,9 +35,6 @@ header img {
     height: 24px;
 }
 
-#container {
-}
-
 #botaoMais {
     font-size: 20px;
     padding: 12px 20px;
@@ -81,8 +78,12 @@ header img {
     margin: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
-    padding-right: 420px;
+    padding: 5px; 
+    width: 800px; 
+    height: 150px; 
+    margin-left: 500px;
 }
+
 
 .animal-container img {
     width: 100px;
@@ -103,8 +104,8 @@ header img {
 
 .button {
     margin: 0px;
-    margin-left: 480px;
-    margin-right: -700px;
+    margin-left: 680px;
+    margin-right: -900px;
     margin-bottom: 6px;
     background-color: #4caf50; 
     color: #fff;
@@ -114,7 +115,6 @@ header img {
     cursor: pointer;
     font-size: 14px; 
     transition: background-color 0.3s ease; 
-
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
