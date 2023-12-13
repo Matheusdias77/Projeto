@@ -19,7 +19,7 @@ function quantidadeAnimal() {
 
     const totalDoentes = document.getElementById('total-doentes');
     if(totalDoentes){
-        const quantDoente = dados.filter(animal => animal.tipoDoenca).length;
+        const quantDoente = dados.filter(animal => animal.descricao).length;
         totalDoentes.textContent = quantDoente;
     }
 
