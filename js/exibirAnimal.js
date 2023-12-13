@@ -23,10 +23,11 @@ function exibirAnimais() {
             animalContainer.classList.add("animal-container");
 
             const imagemInformacoes = document.createElement("div");
-            //imagemInformacoes.classList.add("estilo");
+            imagemInformacoes.classList.add("divAnimal");
 
             const idAnimal = document.createElement("p");
             idAnimal.textContent = `ID: ${cadastrados.idAnimal}`;
+            idAnimal.classList.add("idAnimal");
 
             const genero = document.createElement("p");
             genero.textContent = `Gênero: ${cadastrados.genero}`;

@@ -49,6 +49,14 @@ header img {
     margin-left: 620px;
 }
 
+div img {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 750px;
+    margin-left: -40px;
+    cursor: pointer;
+}
+
 form {
     margin-top: 250px;
 }
@@ -195,7 +203,9 @@ button {
 
 .picture_img{
     width: 530px;
-    height: 230px;
+    height: 224px;
+    margin-top: 755px;
+    margin-left: 2px;
 }
 
 .estilo {

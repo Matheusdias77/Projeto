@@ -64,14 +64,6 @@ header img {
     border-radius: 20px;
 }
 
-#cardAnimal {
-    margin-top: 0px;
-    background-color: #f0eded3b; 
-    border-radius: 8px; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); 
-}
-
-/* Estilo para o contêiner principal do card */
 .animal-container {
     border: 1px solid #d1d1d1;
     border-radius: 8px;
@@ -80,7 +72,7 @@ header img {
     transition: box-shadow 0.3s ease;
     padding: 5px; 
     width: 800px; 
-    height: 150px; 
+    height: 110px; 
     margin-left: 500px;
 }
 
@@ -102,24 +94,46 @@ header img {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.button {
-    margin: 0px;
-    margin-left: 680px;
-    margin-right: -900px;
-    margin-bottom: 6px;
-    background-color: #4caf50; 
-    color: #fff;
-    padding: 10px 30px; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer;
-    font-size: 14px; 
-    transition: background-color 0.3s ease; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+#botaoMais {
+        margin-left: 1400px;
+        margin-right: -200px;
+        margin-top: 700px;
+        position: fixed;
+        padding: 15px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease;   
 }
 
-.button:hover {
+#botaoMais:hover {
     background-color: #45a049; 
+}
+
+#botaoMais:hover {
+    background-color: #45a049; 
+}
+
+.button {
+    margin-left: 550px;
+    margin-right: -490px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4CAF50; /* Cor de fundo verde, você pode alterar conforme necessário */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.idAnimal {
+    margin-top: -42px;
 }
 
 
