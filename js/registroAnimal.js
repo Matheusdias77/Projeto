@@ -69,7 +69,7 @@ if (registro) {
 
         if (validarAnimal(idAnimal)) {
             document.getElementById('idAnimal').value = '';
-            alert('Animal já cadastrado');
+            alert('ID de animal existente');
             return;
         }
 
@@ -98,9 +98,13 @@ if (registro) {
             document.getElementById('idade').value = '';
             document.getElementById('peso').value = '';
             document.getElementById('tipoSanguineo').value = '';
+            if(dadosDoenca!=null){
+                dadosDoenca.descricao.value = '';
+                dadosDoenca.tratamento.value = '';
+            }
             saude.checked = false;
             gestante.checked = false;
-            textoPicture.innerHTML = '';
+            textoPicture.innerHTML = 'Selecione a imagem';
         }, 1000);
     });
 }
