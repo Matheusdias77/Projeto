@@ -76,9 +76,15 @@ function exibirDoentes(){
                 imagem.src = cadastrados.imagem;
                 imagem.alt = `Imagem do Animal ${cadastrados.idAnimal}`;
 
+                const curado = document.createElement('button');
+                curado.type = 'button'; 
+                curado.classList.add('button');
+                curado.textContent = 'a Definir';
+
                 animalContainer.appendChild(imagem);
                 animalContainer.appendChild(idAnimal);
                 animalContainer.appendChild(descricao);
+                animalContainer.appendChild(curado);
 
                 animal.appendChild(animalContainer);
             } 
