@@ -5,6 +5,7 @@ let pictureContainer = document.getElementById('pictureContainer');
 textoPicture.innerHTML = 'Selecione a imagem';
 let saude = document.getElementById('doente');
 let gestante = document.getElementById('gestante');
+let idAnimal, raca, genero, idade, peso, tipoSanguineo;
 
 if(saude){
     saude.addEventListener('change', function(){
@@ -36,10 +37,13 @@ if(saude){
 }
 
 let dataGestacao;
-if(gestante){
-    gestante.addEventListener('change', function(){
+let intervaloContagem;
+let gestacaoSalva = false; 
+
+if (gestante) {
+    gestante.addEventListener('change', function () {
         const descricaoGest = document.getElementById('descricaoGest');
-        if(gestante.checked){
+        if (gestante.checked) {
             const dataDescoberta = document.createElement('input');
             dataDescoberta.id = 'dataDescoberta';
             dataDescoberta.type = 'date';
@@ -48,24 +52,25 @@ if(gestante){
             dataDescoberta.addEventListener('change', function () {
                 dataGestacao = new Date(dataDescoberta.value);
             });
-            //dataDescoberta.classList.add('estilo');
+
             descricaoGest.appendChild(dataDescoberta);
-        }else{
+        } else {
             descricaoGest.innerHTML = '';
             dataGestacao = null;
+            clearInterval(intervaloContagem);
         }
     });
 }
 
 if (registro) {
-    registro.addEventListener('submit', function(event){
+    registro.addEventListener('submit', function (event) {
         event.preventDefault();
-        let idAnimal = document.getElementById('idAnimal').value;
-        let raca = document.getElementById('Raca').value;
-        let genero = document.getElementById('genero').value;
-        let idade = document.getElementById('idade').value;
-        let peso = document.getElementById('peso').value;
-        let tipoSanguineo = document.getElementById('tipoSanguineo').value;
+        idAnimal = document.getElementById('idAnimal').value;
+        raca = document.getElementById('Raca').value;
+        genero = document.getElementById('genero').value;
+        idade = document.getElementById('idade').value;
+        peso = document.getElementById('peso').value;
+        tipoSanguineo = document.getElementById('tipoSanguineo').value;
 
         if (validarAnimal(idAnimal)) {
             document.getElementById('idAnimal').value = '';
@@ -73,33 +78,17 @@ if (registro) {
             return;
         }
 
-        alert("Animal cadastrado");
-                  
-         
-        if(gestante.checked){
-            const tempoGest = data(dataGestacao);
-            salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagemAnimal, tempoGest, null);
-        }else if(saude.checked){
-            let dadosDoenca = {
-                descricao: document.getElementById('descricao').value,
-                tratamento: document.getElementById('tratamento').value,
-                tipoDoenca: document.getElementById('tipoDoenca').value
-            }
-            salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagemAnimal, null, dadosDoenca);
-        }else if(saude.checked && gestante.checked){
-            const tempoGest = data(dataGestacao);
-            let dadosDoenca = {
-                descricao: document.getElementById('descricao').value,
-                tratamento: document.getElementById('tratamento').value,
-                tipoDoenca: document.getElementById('tipoDoenca').value
-            }
-            salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagemAnimal, tempoGest, dadosDoenca);
-        }else {
-            salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagemAnimal, null, null);
-        }
-        iniciarIntervalo();
+        let tempoGest = null;
 
-        setTimeout(function() {
+        if (gestante.checked) {
+            tempoGest = calcularDiferenca(dataGestacao, new Date());
+        }
+
+        salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagemAnimal, tempoGest, null, dataGestacao);
+
+        alert("Animal cadastrado");
+
+        setTimeout(function () {
             document.getElementById('idAnimal').value = '';
             document.getElementById('Raca').value = '';
             document.getElementById('genero').value = '';
@@ -163,7 +152,7 @@ function validarAnimal(idAnimal) {
     return dados.some(dado => dado.idAnimal === idAnimal);
 }
 
-function salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagem, tempoGest, dadosDoenca) {
+function salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagem, tempoGest, dadosDoenca, dataGestacao) {
     dados = carregarDados();
     
     dados.push({
@@ -175,54 +164,47 @@ function salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagem,
         tipoSang: tipoSanguineo,
         imagem: imagem,
         tempoGest: tempoGest,
+        dataGestacao: dataGestacao,
         ...dadosDoenca   
     });
 
     localStorage.setItem('registroAnimal', JSON.stringify(dados));
 }
-function data(descobertaGestacao) {
-    if (descobertaGestacao) {
-        const milissegundos = Date.now() - descobertaGestacao.getTime();
-        const diferencaSegundos = milissegundos / 1000;
 
-        const dias = Math.floor(diferencaSegundos / (60 * 60 * 24));
-        const horas = Math.floor((diferencaSegundos % (60 * 60 * 24)) / (60 * 60));
-        const minutos = Math.floor((diferencaSegundos % (60 * 60)) / 60);
+setInterval(function() {
+    atualizarTempoGestacao();
+}, 5000);
 
-        const tempoGestacao = {
-            dias: dias,
-            horas: horas,
-            minutos: minutos
-        };
+function calcularDiferenca(dataInicio, dataAtual) {
+    const diferencaEmMilissegundos = dataAtual - dataInicio;
+    const diferencaEmMinutos = Math.floor(diferencaEmMilissegundos / 60000);
+    const dias = Math.floor(diferencaEmMinutos / (24 * 60));
+    const horas = Math.floor((diferencaEmMinutos % (24 * 60)) / 60);
+    const minutos = diferencaEmMinutos % 60;
 
-        return tempoGestacao;
-    } else {
-        return null;
-    }
+    return { dias, horas, minutos };
 }
 
-
-function iniciarIntervalo() {
-    intervaloAtualizacao = setInterval(function () {
-        const dados = carregarDados();
-
-        dados.forEach(animal => {
-            if (animal.tempoGest) {
-                const dataDescoberta = animal.dataDescoberta; 
-                const tempoGestAtualizado = data(dataDescoberta);
-                animal.tempoGest = tempoGestAtualizado;
-            }
-        });
-
-        localStorage.setItem('registroAnimal', JSON.stringify(dados));
-    }, 60000); 
-}
-
-function atualizarTempo(tempoGest) {
+function atualizarTempoGestacao() {
     const dados = carregarDados();
 
     dados.forEach(animal => {
-        animal.tempoGest = tempoGest;
+        if (animal.tempoGest && typeof animal.tempoGest === 'object') {
+            console.log(`Atualizando tempo de gestação para o animal ${animal.idAnimal}`);
+            try {
+                const dataGestacao = new Date(animal.dataGestacao);
+                const diferencaAtualizada = calcularDiferenca(dataGestacao, new Date());
+
+                animal.tempoGest.dias = diferencaAtualizada.dias;
+                animal.tempoGest.horas = diferencaAtualizada.horas;
+                animal.tempoGest.minutos = diferencaAtualizada.minutos;
+
+                console.log(`Tempo de gestação atualizado: ${JSON.stringify(animal.tempoGest)}`);
+            } catch (error) {
+                console.error(`Erro ao atualizar o tempo de gestação para o animal ${animal.idAnimal}: ${error}`);
+                animal.tempoGest = null; 
+            }
+        }
     });
 
     localStorage.setItem('registroAnimal', JSON.stringify(dados));
