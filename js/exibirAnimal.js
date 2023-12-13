@@ -22,6 +22,9 @@ function exibirAnimais() {
             const animalContainer = document.createElement("div");
             animalContainer.classList.add("animal-container");
 
+            const imagemInformacoes = document.createElement("div");
+            //imagemInformacoes.classList.add("estilo");
+
             const idAnimal = document.createElement("p");
             idAnimal.textContent = `ID: ${cadastrados.idAnimal}`;
 
@@ -42,10 +45,13 @@ function exibirAnimais() {
             deletar.type = 'button'; 
             deletar.classList.add('button');
             deletar.textContent = 'Deletar';
+            deletar.addEventListener('click', () => excluirAnimal(cadastrados.idAnimal));
 
-            animalContainer.appendChild(imagem);
-            animalContainer.appendChild(idAnimal);
-            animalContainer.appendChild(genero);
+            imagemInformacoes.appendChild(imagem);
+            imagemInformacoes.appendChild(idAnimal);
+            imagemInformacoes.appendChild(genero);
+
+            animalContainer.appendChild(imagemInformacoes);
             animalContainer.appendChild(editar);
             animalContainer.appendChild(deletar);
 
@@ -65,7 +71,9 @@ function exibirDoentes(){
         dados.forEach(cadastrados => {
             if (cadastrados.descricao) {
                 const animalContainer = document.createElement("div");
-                //animalContainer.classList.add("animal-container");
+                animalContainer.classList.add("animal-container");
+
+                const imagemInformacoes = document.createElement("div");
 
                 const idAnimal = document.createElement("p");
                 idAnimal.textContent = `ID: ${cadastrados.idAnimal}`;
@@ -138,6 +146,13 @@ function exibirGestantes(){
 
 function editarAnimal(idAnimal){
     window.location.href = `editar.html?id=${idAnimal}`;
+}
+
+function excluirAnimal(idAnimal){
+    let dados = carregarDados();
+    const indiceAnimal = dados.findIndex(animal => animal.idAnimal === idAnimal);
+    dados.splice(indiceAnimal, 1);
+    localStorage.setItem('registroAnimal', JSON.stringify(dados));
 }
 
 function carregarDados() {
