@@ -35,10 +35,12 @@ function exibirAnimais() {
             const editar = document.createElement('button');
             editar.type = 'button';
             editar.classList.add('button');
+            editar.textContent = 'Editar';
 
             const deletar = document.createElement('button');
             deletar.type = 'button'; 
             deletar.classList.add('button');
+            deletar.textContent = 'Deletar';
 
             animalContainer.appendChild(imagem);
             animalContainer.appendChild(idAnimal);
@@ -109,11 +111,17 @@ function exibirGestantes(){
                 imagem.src = cadastrados.imagem;
                 imagem.alt = `Imagem do Animal ${cadastrados.idAnimal}`;
 
+                const fimGestacao = document.createElement('button');
+                fimGestacao.type = 'button'; 
+                fimGestacao.classList.add('button');
+                fimGestacao.textContent = 'a Definir';
+
                 animalContainer.appendChild(imagem);
                 animalContainer.appendChild(idAnimal);
                 animalContainer.appendChild(tempoDias);
                 animalContainer.appendChild(tempoHoras);
                 animalContainer.appendChild(tempoMinutos);
+                animalContainer.appendChild(fimGestacao);
 
                 animal.appendChild(animalContainer);
             } 
@@ -165,7 +173,6 @@ function atualizarTempoGestacao() {
                 animal.tempoGest.horas = diferencaAtualizada.horas;
                 animal.tempoGest.minutos = diferencaAtualizada.minutos;
 
-                console.log(`Tempo de gestação atualizado: ${JSON.stringify(animal.tempoGest)}`);
             } catch (error) {
                 animal.tempoGest = null; 
             }
