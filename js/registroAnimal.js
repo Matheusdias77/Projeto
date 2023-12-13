@@ -74,12 +74,20 @@ if (registro) {
         }
 
         let tempoGest = null;
+        let dadosDoenca = null;
 
         if (gestante.checked) {
             tempoGest = calcularDiferenca(dataGestacao, new Date());
         }
+        if(saude.checked){
+            dadosDoenca = {
+                descricao: descricao.value,
+                tratamento: tratamento.value
+            }
+        }
 
-        salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagemAnimal, tempoGest, null, dataGestacao);
+
+        salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagemAnimal, tempoGest, dadosDoenca, dataGestacao);
 
         alert("Animal cadastrado");
 

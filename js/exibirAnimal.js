@@ -62,7 +62,7 @@ function exibirDoentes(){
         animal.innerHTML = '';
 
         dados.forEach(cadastrados => {
-            if (cadastrados.tipoDoenca) {
+            if (cadastrados.descricao) {
                 const animalContainer = document.createElement("div");
                 //animalContainer.classList.add("animal-container");
 
@@ -70,7 +70,7 @@ function exibirDoentes(){
                 idAnimal.textContent = `ID: ${cadastrados.idAnimal}`;
 
                 const descricao = document.createElement("p");
-                descricao.textContent = `${cadastrados.descricao}`;
+                descricao.textContent = `Descrição: ${cadastrados.descricao}`;
 
                 const imagem = document.createElement("img");
                 imagem.src = cadastrados.imagem;
