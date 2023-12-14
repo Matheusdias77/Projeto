@@ -1,17 +1,19 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const urlAtual = window.location.href;
     atualizarTempoGestacao();
-    if(urlAtual.includes('animaisTotal.html')){
+    if (urlAtual.includes('animaisTotal.html')) {
         exibirAnimais();
-    }else if(urlAtual.includes('animaisGest.html')){
+    } else if (urlAtual.includes('animaisGest.html')) {
         exibirGestantes();
-        setInterval(function() {
+        setInterval(function () {
             exibirGestantes();
         }, 5000);
-    }else if(urlAtual.includes('animaisDoente')){
+    } else if (urlAtual.includes('animaisDoente')) {
         exibirDoentes();
     }
 });
+
+let botaoConfirmar = document.getElementById('btnConfirmar');
 
 function exibirAnimais() {
     const dados = carregarDados();
@@ -43,7 +45,7 @@ function exibirAnimais() {
             editar.addEventListener('click', () => editarAnimal(cadastrados.idAnimal));
 
             const deletar = document.createElement('button');
-            deletar.type = 'button'; 
+            deletar.type = 'button';
             deletar.classList.add('button');
             deletar.textContent = 'Deletar';
             deletar.addEventListener('click', () => excluirAnimal(cadastrados.idAnimal));
@@ -57,12 +59,12 @@ function exibirAnimais() {
             animalContainer.appendChild(deletar);
 
             animal.appendChild(animalContainer);
-            
+
         });
     }
 }
 
-function exibirDoentes(){
+function exibirDoentes() {
     const dados = carregarDados();
     const animal = document.getElementById("cardAnimal");
 
@@ -89,7 +91,7 @@ function exibirDoentes(){
                 imagem.alt = `Imagem do Animal ${cadastrados.idAnimal}`;
 
                 const curado = document.createElement('button');
-                curado.type = 'button'; 
+                curado.type = 'button';
                 curado.classList.add('button');
                 curado.textContent = 'Boa Saúde';
                 curado.addEventListener('click', () => saudeBoa(cadastrados.idAnimal));
@@ -102,19 +104,19 @@ function exibirDoentes(){
                 animalContainer.appendChild(curado);
 
                 animal.appendChild(animalContainer);
-            } 
+            }
         });
     }
 }
 
-function exibirGestantes(){
+function exibirGestantes() {
     const dados = carregarDados();
     const animal = document.getElementById("cardAnimal");
 
     if (animal) {
         animal.innerHTML = '';
         dados.forEach(cadastrados => {
-            if (cadastrados.tempoGest.dias!==null) {
+            if (cadastrados.dataGestacao) {
                 const animalContainer = document.createElement("div");
                 animalContainer.classList.add("animal-container");
 
@@ -140,7 +142,7 @@ function exibirGestantes(){
                 imagem.alt = `Imagem do Animal ${cadastrados.idAnimal}`;
 
                 const fimGestacao = document.createElement('button');
-                fimGestacao.type = 'button'; 
+                fimGestacao.type = 'button';
                 fimGestacao.classList.add('button');
                 fimGestacao.textContent = 'Terminar Gestação';
                 fimGestacao.addEventListener('click', () => terminarGestacao(cadastrados.idAnimal));
@@ -155,12 +157,12 @@ function exibirGestantes(){
                 animalContainer.appendChild(fimGestacao);
 
                 animal.appendChild(animalContainer);
-            } 
+            }
         });
     }
 }
 
-function editarAnimal(idAnimal){
+function editarAnimal(idAnimal) {
     window.location.href = `editar.html?id=${idAnimal}`;
 }
 
@@ -168,18 +170,13 @@ function excluirAnimal(idAnimal) {
     document.getElementById('customConfirm').style.display = 'block';
 
     document.getElementById('btnConfirmar').addEventListener('click', function () {
-        console.log('Ação de exclusão confirmada');
-        const confirmacao = document.getElementById('customConfirm').style.display = 'none';
+        let dados = carregarDados();
+        const indiceAnimal = dados.findIndex(animal => animal.idAnimal === idAnimal);
 
-        if (confirmacao) {
-            let dados = carregarDados();
-            const indiceAnimal = dados.findIndex(animal => animal.idAnimal === idAnimal);
-
-            if (indiceAnimal !== -1) {
-                dados.splice(indiceAnimal, 1);
-                localStorage.setItem('registroAnimal', JSON.stringify(dados));
-                window.location.reload();
-            }
+        if (indiceAnimal !== -1) {
+            dados.splice(indiceAnimal, 1);
+            localStorage.setItem('registroAnimal', JSON.stringify(dados));
+            window.location.reload();
         }
     });
 
@@ -190,25 +187,22 @@ function excluirAnimal(idAnimal) {
 }
 
 // não apagando ...
-function terminarGestacao(idAnimal){
+function terminarGestacao(idAnimal) {
     document.getElementById('customConfirm').style.display = 'block';
 
     document.getElementById('btnConfirmar').addEventListener('click', function () {
-    console.log('Ação de exclusão confirmada');
-        const confirmacao = document.getElementById('customConfirm').style.display = 'none';
-
-        if(confirmacao){
-            let dados = carregarDados();
-            dados.forEach(dado => {
-                if(dado.idAnimal === idAnimal){
-                    dado.tempoGest.dias = null;
-                    dado.tempoGest.horas = null;
-                    dado.tempoGest.minutos = null;
-                    localStorage.setItem('registroAnimal', JSON.stringify(dados));
-                    window.location.reload();
+        console.log('Confirmar');
+        let dados = carregarDados();
+        dados.forEach(dado => {
+            if (dado.idAnimal === idAnimal) {
+                if ('dataGestacao' in dado) {
+                    delete dado.dataGestacao;
+                    dado.tempoGest = null;
                 }
-            });
-        }
+                localStorage.setItem('registroAnimal', JSON.stringify(dados));
+                window.location.reload();
+            }
+        });
     });
     document.getElementById('btnCancelar').addEventListener('click', function () {
         console.log('Ação de exclusão cancelada');
@@ -216,16 +210,16 @@ function terminarGestacao(idAnimal){
     });
 }
 
-function saudeBoa(idAnimal){
+function saudeBoa(idAnimal) {
     document.getElementById('customConfirm').style.display = 'block';
 
-        document.getElementById('btnConfirmar').addEventListener('click', function () {
-            console.log('Ação de exclusão confirmada');
-            const confirmacao = document.getElementById('customConfirm').style.display = 'none';
+    document.getElementById('btnConfirmar').addEventListener('click', function () {
+        console.log('Ação de exclusão confirmada');
+        const confirmacao = document.getElementById('customConfirm').style.display = 'none';
         if (confirmacao) {
             let dados = carregarDados();
             dados.forEach(dado => {
-                if(dado.idAnimal === idAnimal){
+                if (dado.idAnimal === idAnimal) {
                     if ('descricao' in dado) {
                         delete dado.descricao;
                     }
@@ -238,7 +232,7 @@ function saudeBoa(idAnimal){
             });
         }
     });
-        document.getElementById('btnCancelar').addEventListener('click', function () {
+    document.getElementById('btnCancelar').addEventListener('click', function () {
         console.log('Ação de exclusão cancelada');
         document.getElementById('customConfirm').style.display = 'none';
     });
@@ -261,7 +255,7 @@ function carregarDados() {
     return dadosExistente;
 }
 
-setInterval(function() {
+setInterval(function () {
     atualizarTempoGestacao();
 }, 5000);
 
@@ -289,7 +283,7 @@ function atualizarTempoGestacao() {
                 animal.tempoGest.minutos = diferencaAtualizada.minutos;
 
             } catch (error) {
-                animal.tempoGest = null; 
+                animal.tempoGest = null;
             }
         }
     });
@@ -298,7 +292,7 @@ function atualizarTempoGestacao() {
 }
 
 function mudarTela(destino) {
-    setTimeout(function() {
+    setTimeout(function () {
         window.location.href = destino;
     }, 500);
 }

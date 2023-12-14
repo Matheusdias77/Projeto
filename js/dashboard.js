@@ -1,10 +1,10 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     quantidadeAnimal();
 });
 
 
 function mudarTela(destino) {
-    setTimeout(function() {
+    setTimeout(function () {
         window.location.href = destino;
     }, 500);
 }
@@ -18,14 +18,14 @@ function quantidadeAnimal() {
     }
 
     const totalDoentes = document.getElementById('total-doentes');
-    if(totalDoentes){
+    if (totalDoentes) {
         const quantDoente = dados.filter(animal => animal.descricao).length;
         totalDoentes.textContent = quantDoente;
     }
 
     const totalGestante = document.getElementById('total-gestantes');
-    if(totalGestante){
-        const quantGestant = dados.filter(animal => animal.tempoGest.dias!=null).length; 
+    if (totalGestante) {
+        const quantGestant = dados.filter(animal => animal.dataGestacao).length;
         totalGestante.textContent = quantGestant;
     }
 }
