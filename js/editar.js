@@ -1,8 +1,11 @@
+let idAnimalAux;
 document.addEventListener('DOMContentLoaded', function(){
     const urlP = new URLSearchParams(window.location.search);
-    const idAnimalAux = urlP.get('id');
+    idAnimalAux = urlP.get('id');
     console.log(idAnimalAux)
 });
+
+window.idGlobal = idAnimalAux;
 
 let registro = document.getElementById('registroAnm');
 let picture  = document.getElementById('pictureAnimal');
@@ -38,7 +41,6 @@ if(saude){
 
 let dataGestacao;
 let intervaloContagem;
-let gestacaoSalva = false; 
 
 if (gestante) {
     gestante.addEventListener('change', function () {
@@ -73,7 +75,7 @@ if (registro) {
         peso = document.getElementById('peso').value;
         tipoSanguineo = document.getElementById('tipoSanguineo').value;
 
-        if (validarAnimal(idAnimal)) {
+        if (validarAnimal(idAnimal, idAnimalAux)) {
             document.getElementById('idAnimal').value = '';
             alert('ID de animal existente');
             return;
@@ -162,7 +164,7 @@ function carregarDados() {
 function validarAnimal(idAnimal) {
     dados = carregarDados(); 
 
-    return dados.some(dado => dado.idAnimal === idAnimal);
+    return dados.some(dado => dado.idAnimal === idAnimal && dado.idAnimal !== idAnimalAux);
 }
 
 function salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagem, tempoGest, dadosDoenca, dataGestacao) {
