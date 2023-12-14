@@ -1,11 +1,13 @@
+let imagemAnimal;
 let registro = document.getElementById('registroAnm');
 let picture  = document.getElementById('pictureAnimal');
 let textoPicture = document.getElementById('picture_text');
-let pictureContainer = document.getElementById('pictureContainer');
 textoPicture.innerHTML = 'Selecione a imagem';
 let saude = document.getElementById('doente');
 let gestante = document.getElementById('gestante');
 let idAnimal, raca, genero, idade, peso, tipoSanguineo;
+
+import { idAnimalAux } from "./editar.js";
 
 if(saude){
     saude.addEventListener('change', function(){
@@ -32,7 +34,6 @@ if(saude){
 
 let dataGestacao;
 let intervaloContagem;
-let gestacaoSalva = false; 
 
 if (gestante) {
     gestante.addEventListener('change', function () {
@@ -156,7 +157,11 @@ function carregarDados() {
 function validarAnimal(idAnimal) {
     dados = carregarDados(); 
 
-    return dados.some(dado => dado.idAnimal === idAnimal);
+    if(window.location.pathname.includes("editar.html")){
+        return dados.some(dado => dado.idAnimal === idAnimal && dado.idAnimal !== idAnimalAux);
+    }else{
+        return dados.some(dado => dado.idAnimal === idAnimal);
+    }
 }
 
 function salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagem, tempoGest, dadosDoenca, dataGestacao) {
@@ -194,3 +199,5 @@ function mudarTela(destino) {
         window.location.href = destino;
     }, 500);
 }
+
+export {mudarTela, carregarDados};
