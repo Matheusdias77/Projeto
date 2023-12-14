@@ -88,7 +88,6 @@ if (registro) {
                 erro.style.display = 'none';
             }, 2000);
             return;
-
         }
 
         let tempoGest = null;
@@ -117,8 +116,6 @@ if (registro) {
 
 
         salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagemAnimal, tempoGest, dadosDoenca, dataGestacao);
-
-        alert("Animal cadastrado");
 
         setTimeout(function () {
             document.getElementById('idAnimal').value = '';

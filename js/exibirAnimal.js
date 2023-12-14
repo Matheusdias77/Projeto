@@ -162,24 +162,30 @@ function editarAnimal(idAnimal){
 }
 
 function excluirAnimal(idAnimal) {
-    const confirmacao = confirm("Deseja excluir este animal?");
+    document.getElementById('customConfirm').style.display = 'block';
 
-    if (confirmacao) {
-        let dados = carregarDados();
-        const indiceAnimal = dados.findIndex(animal => animal.idAnimal === idAnimal);
+    document.getElementById('btnConfirmar').addEventListener('click', function () {
+        console.log('Ação de exclusão confirmada');
+        const confirmacao = document.getElementById('customConfirm').style.display = 'none';
 
-        if (indiceAnimal !== -1) {
-            dados.splice(indiceAnimal, 1);
-            localStorage.setItem('registroAnimal', JSON.stringify(dados));
-            alert("Animal excluído com sucesso!");
-            window.location.reload();
-        } else {
-            alert("Animal não encontrado!");
+        if (confirmacao) {
+            let dados = carregarDados();
+            const indiceAnimal = dados.findIndex(animal => animal.idAnimal === idAnimal);
+
+            if (indiceAnimal !== -1) {
+                dados.splice(indiceAnimal, 1);
+                localStorage.setItem('registroAnimal', JSON.stringify(dados));
+                window.location.reload();
+            }
         }
-    } else {
-        alert("Exclusão cancelada");
-    }
+    });
+
+    document.getElementById('btnCancelar').addEventListener('click', function () {
+        console.log('Ação de exclusão cancelada');
+        document.getElementById('customConfirm').style.display = 'none';
+    });
 }
+
 
 function terminarGestacao(idAnimal){
     const confirmacao = confirm("Perído de Gestação terminou?");
