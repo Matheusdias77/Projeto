@@ -1,8 +1,10 @@
-import { mudarTela, carregarDados } from "./registroAnimal.js";
+import { mudarTela, carregarDados, saude, gestante, salvarDados } from "./registroAnimal.js";
 let urlAtual = window.location.href;
 const urlP = new URLSearchParams(window.location.search);
 let idAnimalAux = urlP.get('id');
-console.log(urlAtual)
+let descricao = ""; 
+let tratamento = "";
+let dataGestacaoAux;
 
 if(urlAtual.includes(`editar.html?id=${idAnimalAux}`)){
     let dados = carregarDados(); 
@@ -14,15 +16,65 @@ if(urlAtual.includes(`editar.html?id=${idAnimalAux}`)){
             document.getElementById('idade').value = dado.idade;
             document.getElementById('peso').value = dado.peso;
             document.getElementById('tipoSanguineo').value = dado.tipoSang;
+            
             const imagemElement = document.createElement('img');
             imagemElement.src = dado.imagem;
             imagemElement.alt = `Imagem do Animal ${dado.idAnimal}`;
+            imagemElement.classList.add('picture_img');
 
-            const pictureText = document.getElementById('picture_text');
-            pictureText.innerHTML = '';
-            pictureText.appendChild(imagemElement);
+            const pictureTexto = document.getElementById('picture_text');
+            pictureTexto.innerHTML = '';
+            pictureTexto.appendChild(imagemElement);
+        
+            if(dado.descricao){
+                saude.checked = true;
+                let cardDescricao = document.getElementById('descricaoDoente')
+                if(saude.checked){
+                    descricao = document.createElement('textarea');
+                    descricao.value = dado.descricao;
+                    descricao.classList.add('estilo');
+        
+                    tratamento = document.createElement('textarea');
+                    tratamento.value = dado.tratamento;
+                    tratamento.classList.add('estilo');
+        
+                    cardDescricao.appendChild(descricao);
+                    cardDescricao.appendChild(tratamento);
+                }else{
+                    cardDescricao.innerHTML = '';
+                }
+            }
+
+            if(dado.tempoGest !== null){
+                gestante.checked = true;
+                let descricaoGest = document.getElementById('descricaoGest')
+                if (gestante.checked) {
+                    const gestacaoEdite = document.createElement('div');
+                    const tempoDias = document.createElement("p");
+                    tempoDias.textContent = `${dado.tempoGest.dias}d`;
+                    const tempoHoras = document.createElement("p");
+                    tempoHoras.textContent = `${dado.tempoGest.horas}h`;
+                    const tempoMinutos = document.createElement("p");
+                    tempoMinutos.textContent = `${dado.tempoGest.minutos}m`;
+
+                    dataGestacaoAux = dado.dataGestacao;
+
+                    gestacaoEdite.appendChild(tempoDias);
+                    gestacaoEdite.appendChild(tempoHoras);
+                    gestacaoEdite.appendChild(tempoMinutos);
+
+                    descricaoGest.appendChild(gestacaoEdite);
+                } else {
+                    descricaoGest.innerHTML = '';
+                }
+            }
         }
     });
+}
+
+let dadosDoencaAux = {
+    descricao: descricao.value,
+    tratamento: tratamento.value
 }
 
 
@@ -32,4 +84,4 @@ if(document.getElementById('tituloBemCaprino')){
     });
 }
 
-export {idAnimalAux};
+export {idAnimalAux, dadosDoencaAux, dataGestacaoAux};

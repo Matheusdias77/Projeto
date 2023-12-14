@@ -7,14 +7,15 @@ let saude = document.getElementById('doente');
 let gestante = document.getElementById('gestante');
 let idAnimal, raca, genero, idade, peso, tipoSanguineo;
 
-import { idAnimalAux } from "./editar.js";
+import { idAnimalAux, dadosDoencaAux, dataGestacaoAux } from "./editar.js";
 
+let descricao;
 if(saude){
     saude.addEventListener('change', function(){
         const cardDescricao = document.getElementById('descricaoDoente');
         if(saude.checked){
 
-            const descricao = document.createElement('textarea');
+            descricao = document.createElement('textarea');
             descricao.id = 'descricao' 
             descricao.placeholder = 'Descrição da Doença';
             descricao.classList.add('estilo');
@@ -77,13 +78,21 @@ if (registro) {
         let tempoGest = null;
         let dadosDoenca = null;
 
-        if (gestante.checked) {
+        if (gestante.checked && dataGestacao !== undefined) {
+            tempoGest = calcularDiferenca(dataGestacao, new Date());
+        }else{
+            dataGestacao = dataGestacaoAux;
             tempoGest = calcularDiferenca(dataGestacao, new Date());
         }
-        if(saude.checked){
+        if(saude.checked && descricao !== undefined){
             dadosDoenca = {
                 descricao: descricao.value,
                 tratamento: tratamento.value
+            }
+        }else{
+            dadosDoenca = {
+                descricao: dadosDoencaAux.descricao,
+                tratamento: dadosDoencaAux.tratamento
             }
         }
 
@@ -99,13 +108,14 @@ if (registro) {
             document.getElementById('idade').value = '';
             document.getElementById('peso').value = '';
             document.getElementById('tipoSanguineo').value = '';
-            if(dadosDoenca!=null){
+            if(dadosDoenca!==null && descricao !== undefined){
                 dadosDoenca.descricao.value = '';
                 dadosDoenca.tratamento.value = '';
             }
             saude.checked = false;
             gestante.checked = false;
             textoPicture.innerHTML = 'Selecione a imagem';
+            mudarTela('animaisTotal.html');
         }, 1000);
     });
 }
@@ -155,7 +165,7 @@ function carregarDados() {
 }
 
 function validarAnimal(idAnimal) {
-    dados = carregarDados(); 
+    let dados = carregarDados(); 
 
     if(window.location.pathname.includes("editar.html")){
         return dados.some(dado => dado.idAnimal === idAnimal && dado.idAnimal !== idAnimalAux);
@@ -165,20 +175,52 @@ function validarAnimal(idAnimal) {
 }
 
 function salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagem, tempoGest, dadosDoenca, dataGestacao) {
-    dados = carregarDados();
+    let dados = carregarDados();
     
-    dados.push({
-        idAnimal: idAnimal, 
-        raca: raca, 
-        genero: genero,
-        idade: idade,
-        peso: peso,
-        tipoSang: tipoSanguineo,
-        imagem: imagem,
-        tempoGest: tempoGest,
-        dataGestacao: dataGestacao,
-        ...dadosDoenca   
-    });
+    let indiceAnimal = validarAnimal(idAnimal);
+    if(window.location.pathname.includes("editar.html")){
+        if (!indiceAnimal) {
+            const indice = dados.findIndex(animal => animal.idAnimal === idAnimal);
+            dados[indice] = {
+                idAnimal: idAnimal, 
+                raca: raca, 
+                genero: genero,
+                idade: idade,
+                peso: peso,
+                tipoSang: tipoSanguineo,
+                imagem: imagem,
+                tempoGest: tempoGest,
+                dataGestacao: dataGestacao,
+                ...dadosDoenca   
+            };
+        } else {
+            dados.push({
+                idAnimal: idAnimal, 
+                raca: raca, 
+                genero: genero,
+                idade: idade,
+                peso: peso,
+                tipoSang: tipoSanguineo,
+                imagem: imagem,
+                tempoGest: tempoGest,
+                dataGestacao: dataGestacao,
+                ...dadosDoenca   
+            });
+        }
+    }else {
+        dados.push({
+            idAnimal: idAnimal, 
+            raca: raca, 
+            genero: genero,
+            idade: idade,
+            peso: peso,
+            tipoSang: tipoSanguineo,
+            imagem: imagem,
+            tempoGest: tempoGest,
+            dataGestacao: dataGestacao,
+            ...dadosDoenca   
+        });
+    }
 
     localStorage.setItem('registroAnimal', JSON.stringify(dados));
 }
@@ -200,4 +242,4 @@ function mudarTela(destino) {
     }, 500);
 }
 
-export {mudarTela, carregarDados};
+export {mudarTela, carregarDados, saude, gestante, salvarDados};
