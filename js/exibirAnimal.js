@@ -123,11 +123,11 @@ function exibirGestantes(){
                 idAnimal.textContent = `ID: ${cadastrados.idAnimal}`;
 
                 const tempoDias = document.createElement("p");
-                tempoDias.textContent = `D: ${cadastrados.tempoGest.dias}`;
+                tempoDias.textContent = `${cadastrados.tempoGest.dias}d`;
                 const tempoHoras = document.createElement("p");
-                tempoHoras.textContent = `H: ${cadastrados.tempoGest.horas}`;
+                tempoHoras.textContent = `${cadastrados.tempoGest.horas}h`;
                 const tempoMinutos = document.createElement("p");
-                tempoMinutos.textContent = `M: ${cadastrados.tempoGest.minutos}`;
+                tempoMinutos.textContent = `${cadastrados.tempoGest.minutos}m`;
 
                 const imagem = document.createElement("img");
                 imagem.src = cadastrados.imagem;
