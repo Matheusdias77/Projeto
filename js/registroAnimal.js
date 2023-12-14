@@ -183,7 +183,7 @@ function validarAnimal(idAnimal) {
 
 function salvarDados(idAnimal, raca, genero, idade, peso, tipoSanguineo, imagem, tempoGest, dadosDoenca, dataGestacao) {
     let dados = carregarDados();
-    
+
     let indiceAnimal = validarAnimal(idAnimal);
     if(window.location.pathname.includes("editar.html")){
         if (!indiceAnimal) {

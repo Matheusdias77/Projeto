@@ -91,7 +91,8 @@ function exibirDoentes(){
                 const curado = document.createElement('button');
                 curado.type = 'button'; 
                 curado.classList.add('button');
-                curado.textContent = 'a Definir';
+                curado.textContent = 'Boa Saúde';
+                curado.addEventListener('click', () => saudeBoa(cadastrados.idAnimal));
 
                 imagemInformacoes.appendChild(imagem);
                 imagemInformacoes.appendChild(idAnimal);
@@ -113,7 +114,7 @@ function exibirGestantes(){
     if (animal) {
         animal.innerHTML = '';
         dados.forEach(cadastrados => {
-            if (cadastrados.tempoGest!=null) {
+            if (cadastrados.tempoGest.dias!==null) {
                 const animalContainer = document.createElement("div");
                 animalContainer.classList.add("animal-container");
 
@@ -138,7 +139,8 @@ function exibirGestantes(){
                 const fimGestacao = document.createElement('button');
                 fimGestacao.type = 'button'; 
                 fimGestacao.classList.add('button');
-                fimGestacao.textContent = 'a Definir';
+                fimGestacao.textContent = 'Terminar Gestação';
+                fimGestacao.addEventListener('click', () => terminarGestacao(cadastrados.idAnimal));
 
                 imagemInformacoes.appendChild(imagem);
                 imagemInformacoes.appendChild(idAnimal);
@@ -160,7 +162,7 @@ function editarAnimal(idAnimal){
 }
 
 function excluirAnimal(idAnimal) {
-    const confirmacao = confirm("Tem certeza que deseja excluir este animal?");
+    const confirmacao = confirm("Deseja excluir este animal?");
 
     if (confirmacao) {
         let dados = carregarDados();
@@ -176,6 +178,42 @@ function excluirAnimal(idAnimal) {
         }
     } else {
         alert("Exclusão cancelada");
+    }
+}
+
+function terminarGestacao(idAnimal){
+    const confirmacao = confirm("Perído de Gestação terminou?");
+
+    if(confirmacao){
+        let dados = carregarDados();
+        dados.forEach(dado => {
+            if(dado.idAnimal === idAnimal){
+                dado.tempoGest.dias = null;
+                dado.tempoGest.horas = null;
+                dado.tempoGest.minutos = null;
+                localStorage.setItem('registroAnimal', JSON.stringify(dados));
+                window.location.reload();
+            }
+        });
+    }
+}
+
+function saudeBoa(idAnimal){
+    const confirmacao = confirm("Confirme que Animal está em Boa Saúde");
+    if (confirmacao) {
+        let dados = carregarDados();
+        dados.forEach(dado => {
+            if(dado.idAnimal === idAnimal){
+                if ('descricao' in dado) {
+                    delete dado.descricao;
+                }
+                if ('tratamento' in dado) {
+                    delete dado.tratamento;
+                }
+                localStorage.setItem('registroAnimal', JSON.stringify(dados));
+                window.location.reload();
+            }
+        });
     }
 }
 

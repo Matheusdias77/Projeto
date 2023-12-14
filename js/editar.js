@@ -47,7 +47,7 @@ if(urlAtual.includes(`editar.html?id=${idAnimalAux}`)){
                 }
             }
 
-            if(dado.tempoGest !== null){
+            if(dado.tempoGest.dias !== null){
                 gestante.checked = true;
                 let descricaoGest = document.getElementById('descricaoGest')
                 if (gestante.checked) {

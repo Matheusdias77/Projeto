@@ -25,7 +25,7 @@ function quantidadeAnimal() {
 
     const totalGestante = document.getElementById('total-gestantes');
     if(totalGestante){
-        const quantGestant = dados.filter(animal => animal.tempoGest!=null).length; 
+        const quantGestant = dados.filter(animal => animal.tempoGest.dias!=null).length; 
         totalGestante.textContent = quantGestant;
     }
 }
