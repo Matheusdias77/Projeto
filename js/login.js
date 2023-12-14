@@ -10,7 +10,6 @@ formulario.addEventListener('submit', function (event) {
     let email = document.getElementById('E-mail').value;
     let senha = document.getElementById('Senha').value;
 
-    // Verifica se o usuário existe nos dados existentes
     let erro = document.getElementById('erro');
 
     if (!verificarUsuario(email, senha)) {

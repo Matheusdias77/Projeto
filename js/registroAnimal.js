@@ -5,6 +5,7 @@ let textoPicture = document.getElementById('picture_text');
 textoPicture.innerHTML = 'Selecione a imagem';
 let saude = document.getElementById('doente');
 let gestante = document.getElementById('gestante');
+let erro = document.getElementById('erro');
 let idAnimal, raca, genero, idade, peso, tipoSanguineo;
 
 import { idAnimalAux, dadosDoencaAux, dataGestacaoAux, caminhoAux } from "./editar.js";
@@ -69,7 +70,11 @@ if (registro) {
         tipoSanguineo = document.getElementById('tipoSanguineo').value;
 
         if(genero === 'masculino' && gestante.checked){
-            alert('Animal Precisa Ser Fêmea');
+            erro.textContent = 'Animal Precisa Ser Fêmea.';
+            erro.style.display = 'block';
+            setTimeout(function () {
+                erro.style.display = 'none';
+            }, 2000);
             gestante.checked = false;
             document.getElementById('descricaoGest').textContent = '';
             return;
@@ -77,8 +82,13 @@ if (registro) {
 
         if (validarAnimal(idAnimal)) {
             document.getElementById('idAnimal').value = '';
-            alert('ID de animal existente');
+            erro.textContent = 'ID de animal existente.';
+            erro.style.display = 'block';
+            setTimeout(function () {
+                erro.style.display = 'none';
+            }, 2000);
             return;
+
         }
 
         let tempoGest = null;

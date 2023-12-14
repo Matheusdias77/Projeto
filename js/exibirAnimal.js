@@ -119,7 +119,7 @@ function exibirGestantes(){
                 animalContainer.classList.add("animal-container");
 
                 const imagemInformacoes = document.createElement("div");
-                //imagemInformacoes.classList.add("estilo");
+
 
                 const idAnimal = document.createElement("p");
                 idAnimal.textContent = `ID: ${cadastrados.idAnimal}`;

@@ -250,6 +250,21 @@ button {
     border-color: #4caf50;
 }
 
+#erro {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background-color: rgba(201, 8, 8, 0.897);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 1000;
+  }
+
 
 
 
