@@ -7,7 +7,7 @@ let saude = document.getElementById('doente');
 let gestante = document.getElementById('gestante');
 let idAnimal, raca, genero, idade, peso, tipoSanguineo;
 
-import { idAnimalAux, dadosDoencaAux, dataGestacaoAux } from "./editar.js";
+import { idAnimalAux, dadosDoencaAux, dataGestacaoAux, caminhoAux } from "./editar.js";
 
 let descricao;
 if(saude){
@@ -78,6 +78,9 @@ if (registro) {
         let tempoGest = null;
         let dadosDoenca = null;
 
+        if(window.location.pathname.includes("editar.html")){
+            imagemAnimal = caminhoAux;
+        }
         if (gestante.checked && dataGestacao !== undefined) {
             tempoGest = calcularDiferenca(dataGestacao, new Date());
         }else{
@@ -108,10 +111,6 @@ if (registro) {
             document.getElementById('idade').value = '';
             document.getElementById('peso').value = '';
             document.getElementById('tipoSanguineo').value = '';
-            if(dadosDoenca!==null && descricao !== undefined){
-                dadosDoenca.descricao.value = '';
-                dadosDoenca.tratamento.value = '';
-            }
             saude.checked = false;
             gestante.checked = false;
             textoPicture.innerHTML = 'Selecione a imagem';
@@ -242,4 +241,4 @@ function mudarTela(destino) {
     }, 500);
 }
 
-export {mudarTela, carregarDados, saude, gestante, salvarDados};
+export {mudarTela, carregarDados, saude, gestante};

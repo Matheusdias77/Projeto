@@ -1,13 +1,14 @@
-import { mudarTela, carregarDados, saude, gestante, salvarDados } from "./registroAnimal.js";
+import { mudarTela, carregarDados, saude, gestante } from "./registroAnimal.js";
 let urlAtual = window.location.href;
 const urlP = new URLSearchParams(window.location.search);
 let idAnimalAux = urlP.get('id');
 let descricao = ""; 
 let tratamento = "";
 let dataGestacaoAux;
+let dados = carregarDados(); 
+let caminhoAux;
 
 if(urlAtual.includes(`editar.html?id=${idAnimalAux}`)){
-    let dados = carregarDados(); 
     dados.forEach(dado => {
         if (dado.idAnimal === idAnimalAux) {
             document.getElementById('idAnimal').value = dado.idAnimal;
@@ -16,7 +17,8 @@ if(urlAtual.includes(`editar.html?id=${idAnimalAux}`)){
             document.getElementById('idade').value = dado.idade;
             document.getElementById('peso').value = dado.peso;
             document.getElementById('tipoSanguineo').value = dado.tipoSang;
-            
+            caminhoAux = dado.imagem;
+
             const imagemElement = document.createElement('img');
             imagemElement.src = dado.imagem;
             imagemElement.alt = `Imagem do Animal ${dado.idAnimal}`;
@@ -77,11 +79,10 @@ let dadosDoencaAux = {
     tratamento: tratamento.value
 }
 
-
 if(document.getElementById('tituloBemCaprino')){
     document.getElementById('tituloBemCaprino').addEventListener('click', function() {
         mudarTela('dashboard.html');
     });
 }
 
-export {idAnimalAux, dadosDoencaAux, dataGestacaoAux};
+export {idAnimalAux, dadosDoencaAux, dataGestacaoAux, caminhoAux};
