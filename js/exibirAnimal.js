@@ -123,14 +123,17 @@ function exibirGestantes(){
 
                 const idAnimal = document.createElement("p");
                 idAnimal.textContent = `ID: ${cadastrados.idAnimal}`;
-                idAnimal.classList.add("idAnimal");
+                idAnimal.classList.add("para");
 
                 const tempoDias = document.createElement("p");
                 tempoDias.textContent = `${cadastrados.tempoGest.dias}d`;
+                tempoDias.classList.add("para");
                 const tempoHoras = document.createElement("p");
                 tempoHoras.textContent = `${cadastrados.tempoGest.horas}h`;
+                tempoHoras.classList.add("para");
                 const tempoMinutos = document.createElement("p");
                 tempoMinutos.textContent = `${cadastrados.tempoGest.minutos}m`;
+                tempoMinutos.classList.add("para");
 
                 const imagem = document.createElement("img");
                 imagem.src = cadastrados.imagem;
@@ -186,41 +189,59 @@ function excluirAnimal(idAnimal) {
     });
 }
 
-
+// não apagando ...
 function terminarGestacao(idAnimal){
-    const confirmacao = confirm("Perído de Gestação terminou?");
+    document.getElementById('customConfirm').style.display = 'block';
 
-    if(confirmacao){
-        let dados = carregarDados();
-        dados.forEach(dado => {
-            if(dado.idAnimal === idAnimal){
-                dado.tempoGest.dias = null;
-                dado.tempoGest.horas = null;
-                dado.tempoGest.minutos = null;
-                localStorage.setItem('registroAnimal', JSON.stringify(dados));
-                window.location.reload();
-            }
-        });
-    }
+    document.getElementById('btnConfirmar').addEventListener('click', function () {
+    console.log('Ação de exclusão confirmada');
+        const confirmacao = document.getElementById('customConfirm').style.display = 'none';
+
+        if(confirmacao){
+            let dados = carregarDados();
+            dados.forEach(dado => {
+                if(dado.idAnimal === idAnimal){
+                    dado.tempoGest.dias = null;
+                    dado.tempoGest.horas = null;
+                    dado.tempoGest.minutos = null;
+                    localStorage.setItem('registroAnimal', JSON.stringify(dados));
+                    window.location.reload();
+                }
+            });
+        }
+    });
+    document.getElementById('btnCancelar').addEventListener('click', function () {
+        console.log('Ação de exclusão cancelada');
+        document.getElementById('customConfirm').style.display = 'none';
+    });
 }
 
 function saudeBoa(idAnimal){
-    const confirmacao = confirm("Confirme que Animal está em Boa Saúde");
-    if (confirmacao) {
-        let dados = carregarDados();
-        dados.forEach(dado => {
-            if(dado.idAnimal === idAnimal){
-                if ('descricao' in dado) {
-                    delete dado.descricao;
+    document.getElementById('customConfirm').style.display = 'block';
+
+        document.getElementById('btnConfirmar').addEventListener('click', function () {
+            console.log('Ação de exclusão confirmada');
+            const confirmacao = document.getElementById('customConfirm').style.display = 'none';
+        if (confirmacao) {
+            let dados = carregarDados();
+            dados.forEach(dado => {
+                if(dado.idAnimal === idAnimal){
+                    if ('descricao' in dado) {
+                        delete dado.descricao;
+                    }
+                    if ('tratamento' in dado) {
+                        delete dado.tratamento;
+                    }
+                    localStorage.setItem('registroAnimal', JSON.stringify(dados));
+                    window.location.reload();
                 }
-                if ('tratamento' in dado) {
-                    delete dado.tratamento;
-                }
-                localStorage.setItem('registroAnimal', JSON.stringify(dados));
-                window.location.reload();
-            }
-        });
-    }
+            });
+        }
+    });
+        document.getElementById('btnCancelar').addEventListener('click', function () {
+        console.log('Ação de exclusão cancelada');
+        document.getElementById('customConfirm').style.display = 'none';
+    });
 }
 
 function carregarDados() {

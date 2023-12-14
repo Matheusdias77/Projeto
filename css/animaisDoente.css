@@ -94,3 +94,36 @@ header img {
 .idAnimal {
     margin-top: -42px;
 }
+
+#customConfirm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#customConfirm p {
+    margin-bottom: 20px;
+}
+
+#btnConfirmar, #btnCancelar {
+    padding: 10px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+#btnConfirmar {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+#btnCancelar {
+    background-color: #ccc;
+    color: #000;
+}
