@@ -35,7 +35,6 @@ if(saude){
 
 let dataGestacao;
 let intervaloContagem;
-
 if (gestante) {
     gestante.addEventListener('change', function () {
         const descricaoGest = document.getElementById('descricaoGest');
@@ -68,6 +67,13 @@ if (registro) {
         idade = document.getElementById('idade').value;
         peso = document.getElementById('peso').value;
         tipoSanguineo = document.getElementById('tipoSanguineo').value;
+
+        if(genero === 'masculino' && gestante.checked){
+            alert('Animal Precisa Ser Fêmea');
+            gestante.checked = false;
+            document.getElementById('descricaoGest').textContent = '';
+            return;
+        }
 
         if (validarAnimal(idAnimal)) {
             document.getElementById('idAnimal').value = '';
@@ -111,6 +117,8 @@ if (registro) {
             document.getElementById('idade').value = '';
             document.getElementById('peso').value = '';
             document.getElementById('tipoSanguineo').value = '';
+            document.getElementById('descricaoDoente').textContent = '';
+            document.getElementById('descricaoGest').textContent = '';
             saude.checked = false;
             gestante.checked = false;
             textoPicture.innerHTML = 'Selecione a imagem';
