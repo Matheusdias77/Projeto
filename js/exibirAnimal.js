@@ -79,6 +79,7 @@ function exibirDoentes(){
 
                 const idAnimal = document.createElement("p");
                 idAnimal.textContent = `ID: ${cadastrados.idAnimal}`;
+                idAnimal.classList.add("idAnimal");
 
                 const descricao = document.createElement("p");
                 descricao.textContent = `Descrição: ${cadastrados.descricao}`;
@@ -121,6 +122,7 @@ function exibirGestantes(){
 
                 const idAnimal = document.createElement("p");
                 idAnimal.textContent = `ID: ${cadastrados.idAnimal}`;
+                idAnimal.classList.add("idAnimal");
 
                 const tempoDias = document.createElement("p");
                 tempoDias.textContent = `${cadastrados.tempoGest.dias}d`;
